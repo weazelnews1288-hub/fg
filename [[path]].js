@@ -30,8 +30,8 @@ export async function onRequest({ request, env }) {
       await env.SITE.put('config', raw);
       return json({ ok: true, by: user });
     }
-    if (path === '/api/me') return json({ user: await userOf(request, env) });
-    if (path === '/api/login' && m === 'POST') {
+    if (path === '/api/me' || path === '/me') return json({ user: await userOf(request, env) });
+    if ((path === '/api/login' || path === '/login') && m === 'POST') {
       const { login, password } = await request.json(), pw = admins(env)[String(login)];
       if (pw === undefined || !same(await hmac(env.SECRET, String(password)), await hmac(env.SECRET, pw))) return json({ error: 'Неверный логин или пароль' }, 401);
       const p = b64u(enc.encode(JSON.stringify({ u: login, e: Date.now() + 30 * 864e5 })));
