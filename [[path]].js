@@ -40,4 +40,4 @@ export async function onRequest({ request, env }) {
     if (path === '/api/logout') return json({ ok: true }, 200, { 'Set-Cookie': 'sid=; Path=/; Max-Age=0' });
     return json({ error: 'not found' }, 404);
   } catch (e) { return json({ error: String(e.message) }, 400); }
-}
+} 
