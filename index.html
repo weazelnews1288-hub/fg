@@ -589,7 +589,6 @@ function makeDefault() {
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
     ],
   };
-}
 const cleanImg = (v) => (typeof v === 'string' && v.startsWith('data:image/') ? v : null);
 function normBlock(b) {
   if (!b || typeof b !== 'object' || !NEW[b.type]) return null;
