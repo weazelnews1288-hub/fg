@@ -597,7 +597,7 @@ const cleanImg = (v) => (
   (v.startsWith('data:image/') ||
    v.startsWith('http://') ||
    v.startsWith('https://'))
-) ? v : null);
+) ? v : null;
 function normBlock(b) {
   if (!b || typeof b !== 'object' || !NEW[b.type]) return null;
   const base = newBlock(b.type);
