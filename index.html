@@ -389,6 +389,31 @@ function makeDefault() {
     text: 'Будьте в курсе последних событий с Weazle News. Актуальные новости каждый день.',
     btn: { label: 'Связаться с нами', link: 'page:contact' },
   });
+  const news = Object.assign(newBlock('cards'), {
+  title: 'Последние новости',
+  lead: 'Самые свежие события Weazel News',
+  cols: 3,
+  items: [
+    mk({
+      tag: 'Новости',
+      title: 'Главные события дня',
+      text: 'Короткий обзор самых важных событий, произошедших сегодня в городе.',
+      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80'
+    }),
+    mk({
+      tag: 'Город',
+      title: 'Что происходит в городе',
+      text: 'Последние события, изменения и интересные новости со всех районов.',
+      image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80'
+    }),
+    mk({
+      tag: 'Эксклюзив',
+      title: 'Новое расследование Weazel News',
+      text: 'Наша редакция продолжает следить за важными событиями и готовит новые материалы.',
+      image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80'
+    })
+  ]
+});
   const cards = Object.assign(newBlock('cards'), {
     title: 'Чем мы занимаемся', lead: '',
     items: [
@@ -549,7 +574,7 @@ function makeDefault() {
     v: 2, theme: 'light', primary: '#8E0A10', font: 'modern', radius: 14,
     brand: 'Weazel News', logo: null, contact: 'mercantile1038@gmail.com', footer: '© 2026 Weazel News. Все права защищены.',
     pages: [
-      { id: 'home', title: 'Главная', nav: true, accent: null, blocks: [hero, cards, stats, cta] },
+      { id: 'home', title: 'Главная', nav: true, accent: null, blocks: [hero, cards, stats, cta, news] },
       // --- ВАЖНО: добавлен 'billboards' ---
       { id: 'about', title: 'Билдборды', nav: true, accent: null, blocks: [split, billboards, how] },
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
