@@ -591,7 +591,10 @@ function makeDefault() {
   };
 }
 
-const cleanImg = (v) => (typeof v === 'string' && v.startsWith('data:image/') ? v : null);
+const cleanImg = (v) => (
+  typeof v === 'string' &&
+  (v.startsWith('data:image/') || /^https?:\/\/.+\.(jpg|jpeg|png|webp)(\?.*)?$/i.test(v))
+) ? v : null;
 function normBlock(b) {
   if (!b || typeof b !== 'object' || !NEW[b.type]) return null;
   const base = newBlock(b.type);
