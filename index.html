@@ -440,31 +440,132 @@ function makeDefault() {
     text: '',
   });
 
+  // --- ВОТ ДОБАВЛЕННЫЙ БЛОК БИЛБОРДОВ ---
   const billboards = Object.assign(newBlock('cards'), {
     title: 'Доступные билборды',
     lead: 'Выберите подходящую локацию для вашей рекламы',
     cols: 3,
     items: [
-      mk({ tag: 'Центр', title: 'Билборд №1 — Вайнвуд Бульвар', text: 'Высокий пешеходный и автомобильный трафик. Размеры: 6x3 м.', image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №2 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Пляж', title: 'Билборд №3 — Веспуччи Бич', text: 'Зона отдыха и высокой активности в течение всего дня. Размеры: 6x3 м.', image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №3 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №4 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №5 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №6 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №7 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №8 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №9 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №10 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №11 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №12 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №13 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №14 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №15 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №16 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №17 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №18 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' }),
-      mk({ tag: 'Трасса', title: 'Билборд №19 — Шоссе Дель-Перро', text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80' })
+      mk({
+        tag: 'Центр',
+        title: 'Билборд №1 — Вайнвуд Бульвар',
+        text: 'Высокий пешеходный и автомобильный трафик. Размеры: 6x3 м.',
+        image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №2 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Пляж',
+        title: 'Билборд №3 — Веспуччи Бич',
+        text: 'Зона отдыха и высокой активности в течение всего дня. Размеры: 6x3 м.',
+        image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №3 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №4 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №5 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №6 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №7 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №8 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №9 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №10 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №11 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №12 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №13 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №14 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №15 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №16 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №17 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №18 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      }),
+      mk({
+        tag: 'Трасса',
+        title: 'Билборд №19 — Шоссе Дель-Перро',
+        text: 'Отличная видимость с основной магистрали города. Размеры: 12x4 м.',
+        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80'
+      })
     ]
   });
 
@@ -478,76 +579,32 @@ function makeDefault() {
     mk({ q: 'Можно ли менять сайт самому?', a: 'Да. Мы настраиваем сайт так, чтобы тексты, фото и страницы вы могли менять без разработчика.' }),
     mk({ q: 'Вы поддерживаете сайт после запуска?', a: 'Да, по отдельному соглашению. Исправляем ошибки и помогаем с обновлениями.' }) ] });
 
-  // --- БЛОКИ ДЛЯ СТРАНИЦЫ "ЦЕНЫ И УСЛУГИ" ---
-  const priceHero = Object.assign(newBlock('hero'), {
-    eyebrow: 'Прайс-лист Weazel News',
-    title: 'Цены на услуги и коммерческая реклама',
-    text: 'Ознакомьтесь с действующими тарифами на эфирные объявления, рекламу предприятий, съёмку мероприятий и индивидуальные услуги.',
-    btn: { label: 'Рассчитать стоимость', link: 'page:price and work' }
-  });
-
-  const priceGreenJournalism = Object.assign(newBlock('cards'), {
-    title: 'Зелёная журналистика',
-    lead: 'Эфирные зеленые строки (для физических лиц)',
-    cols: 3,
-    items: [
-      mk({ tag: 'Текст / Обмен', title: 'Обычное объявление', text: '• Продажа / Покупка: $150\n• Поиск / Услуги / Обмен: $100', image: null }),
-      mk({ tag: 'Недвижимость', title: 'Аренда и Недвижимость', text: '• Сдача в аренду: $150\n• Покупка / Продажа жилья: $200', image: null }),
-      mk({ tag: 'Наборы', title: 'Наборы и Мероприятия', text: '• Наборы в гос. организации: $100\n• Приглашения на события: $150', image: null })
-    ]
-  });
-
-  const priceYellowJournalism = Object.assign(newBlock('cards'), {
-    title: 'Жёлтая журналистика',
-    lead: 'Эксклюзивные эфирные строки и коммерческие интеграции',
-    cols: 3,
-    items: [
-      mk({ tag: 'Бизнес', title: 'Реклама бизнеса', text: '• Коммерческое объявление: $350\n• Набор в коммерцию: $250', image: null }),
-      mk({ tag: 'PR', title: 'Персональный PR', text: '• Упоминание бренд-персоны: $300\n• Поздравления и анонсы: $200', image: null }),
-      mk({ tag: 'Спец. эфир', title: 'Срочный вывод', text: '• Внеочередной вывод в эфир: $500\n• Забор рекламной паузы: $1 000', image: null })
-    ]
-  });
-
-  const priceCommercial = Object.assign(newBlock('cards'), {
-    title: 'Коммерческие услуги',
-    lead: 'Рекламные пакеты, статьи и видеопроизводство',
-    cols: 3,
-    items: [
-      mk({ tag: 'Контент', title: 'Статьи и Интервью', text: '• Написание рекламной статьи: от $5 000\n• Эфирное интервью (15 мин): $10 000', image: null }),
-      mk({ tag: 'Медиа', title: 'Фото и Видеосъёмка', text: '• Репортажная фотосессия: $7 500\n• Производство видеоролика: от $15 000', image: null }),
-      mk({ tag: 'Билборды', title: 'Аренда билбордов', text: '• Размещение на 7 дней: $5 000\n• Размещение на 30 дней: $18 000', image: null })
-    ]
-  });
-
-  const priceFaq = Object.assign(newBlock('faq'), {
-    title: 'Частые вопросы по услугам',
-    items: [
-      mk({ q: 'Как подать зеленое объявление?', a: 'Зеленые объявления подаются через форму на сайте или напрямую дежурному редактору Weazel News.' }),
-      mk({ q: 'Какие ограничения действуют для рекламы?', a: 'Не допускается реклама нелегальной продукции, оружия, наркотических веществ и содержимого, нарушающего законы штата.' }),
-      mk({ q: 'Есть ли скидки при долгосрочном сотрудничестве?', a: 'Да, при заказе комплексных рекламных кампаний или аренде билбордов от 30 дней действуют индивидуальные условия.' })
-    ]
-  });
-
   return {
     v: 2, theme: 'light', primary: '#8E0A10', font: 'modern', radius: 14,
     brand: 'Weazel News', logo: null, contact: 'mercantile1038@gmail.com', footer: '© 2026 Weazel News. Все права защищены.',
     pages: [
-      { id: 'home', title: 'Главная', nav: true, accent: null, blocks: [hero, news, newsed, cards, stats, cta] },
+     { id: 'home', title: 'Главная', nav: true, accent: null, blocks: [hero, news, newsed, cards, stats, cta] },
+      // --- ВАЖНО: добавлен 'billboards' ---
       { id: 'about', title: 'Билборды', nav: true, accent: null, blocks: [split, billboards, how] },
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
-      { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [priceHero, priceGreenJournalism, priceYellowJournalism, priceCommercial, priceFaq] },
+      { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [] },
     ],
   };
 }
 
 const cleanImg = (v) => {
   if (typeof v !== 'string') return null;
+
   v = v.trim();
+
+  // Base64
   if (v.startsWith('data:image/')) return v;
+
+  // Любая обычная ссылка на изображение
   if (/^https?:\/\/.+/i.test(v)) return v;
+
   return null;
 };
-
 function normBlock(b) {
   if (!b || typeof b !== 'object' || !NEW[b.type]) return null;
   const base = newBlock(b.type);
@@ -566,7 +623,6 @@ function normBlock(b) {
   }
   return out;
 }
-
 function sanitize(p) {
   const d = makeDefault();
   if (!p || typeof p !== 'object' || !Array.isArray(p.pages) || !p.pages.length) return d;
@@ -586,7 +642,6 @@ function sanitize(p) {
     pages: pages.length ? pages : d.pages,
   };
 }
-
 function migrateV1(o) {
   const c = makeDefault();
   if (o.theme === 'dark') c.theme = 'dark';
@@ -607,7 +662,6 @@ function migrateV1(o) {
   }
   return sanitize(c);
 }
-
 function loadConfig() {
   if (window.__BOOT && window.__BOOT.cfg) { try { return sanitize(window.__BOOT.cfg); } catch (e) {} return makeDefault(); }
   if (window.__BOOT) return makeDefault();
@@ -619,7 +673,6 @@ function loadConfig() {
   } catch (e) {}
   return makeDefault();
 }
-
 function loadRole() {
   if (window.__BOOT) return window.__BOOT.user ? 'admin' : 'viewer';
   try { return localStorage.getItem(ROLE_KEY) === 'viewer' ? 'viewer' : 'admin'; } catch (e) { return 'admin'; }
@@ -1049,293 +1102,380 @@ function Cta({ b, patch }) {
   );
 }
 function Divider({ b }) {
-  return <div className={'divider ' + b.size}>{b.line && <hr />}</div>;
+  return <div className={'divider ' + b.size} role="separator">{b.line && <hr />}</div>;
 }
+const VIEWS = { hero: Hero, text: TextBlock, cards: Cards, image: ImageBlock, split: Split, gallery: Gallery, stats: Stats, faq: Faq, cta: Cta, divider: Divider };
 
-/* ---------- Главный компонент отрисовки блока ---------- */
-function BlockView({ b, pageId }) {
-  const { admin, act } = useCtx();
-  const patch = (f) => act.patch(pageId, b.id, f);
-  const isHero = b.type === 'hero';
-
-  let content = null;
-  switch (b.type) {
-    case 'hero': content = <Hero b={b} patch={patch} />; break;
-    case 'text': content = <TextBlock b={b} patch={patch} />; break;
-    case 'cards': content = <Cards b={b} patch={patch} />; break;
-    case 'image': content = <ImageBlock b={b} patch={patch} />; break;
-    case 'split': content = <Split b={b} patch={patch} />; break;
-    case 'gallery': content = <Gallery b={b} patch={patch} />; break;
-    case 'stats': content = <Stats b={b} patch={patch} />; break;
-    case 'faq': content = <Faq b={b} patch={patch} />; break;
-    case 'cta': content = <Cta b={b} patch={patch} />; break;
-    case 'divider': content = <Divider b={b} />; break;
-    default: return null;
-  }
-
-  const inner = (
-    <section className={'blk ' + (isHero ? 'hero-blk ' : '') + 'bg-' + b.bg + ' align-' + b.align}>
-      {content}
-    </section>
-  );
-
+function BlockView({ b, i, count, page, act }) {
+  const { admin } = useCtx();
+  if (!admin && isEmpty(b)) return null;
+  const View = VIEWS[b.type];
+  const patch = (f) => act.patch(page.id, b.id, f);
+  const inner = b.type === 'divider'
+    ? <View b={b} patch={patch} />
+    : <section className={`blk ${b.type}-blk bg-${b.bg} align-${b.align}`}><View b={b} patch={patch} /></section>;
   if (!admin) return inner;
-  return <BlockFrame b={b} i={b._i} count={b._count} act={act} pageId={pageId}>{inner}</BlockFrame>;
+  return <BlockFrame b={b} i={i} count={count} act={act} pageId={page.id}>{inner}</BlockFrame>;
+}
+function PageView({ page, act }) {
+  const { admin } = useCtx();
+  const visible = admin || page.blocks.some((b) => !isEmpty(b));
+  return (
+    <>
+      {page.blocks.map((b, i) => <BlockView key={b.id} b={b} i={i} count={page.blocks.length} page={page} act={act} />)}
+      {!visible && <p className="lead py-16">Эта страница пока пуста.</p>}
+      {admin && (
+        <section className="panel mt-4" aria-label="Добавить блок">
+          <span className="label">Добавить блок на страницу «{page.title || 'Без названия'}»</span>
+          <div className="addpick mt-3">
+            {Object.entries(TYPES).map(([type, m]) => (
+              <button key={type} type="button" onClick={() => act.add(page.id, type)}><strong style={{ fontWeight: 500 }}>{m.name}</strong><small>{m.hint}</small></button>
+            ))}
+          </div>
+        </section>
+      )}
+    </>
+  );
 }
 
-/* ---------- Отрисовка страницы ---------- */
-function PageView({ page }) {
-  const { admin, act } = useCtx();
-  const [pickType, setPickType] = useState(false);
-
-  const blocks = page.blocks.map((b, i) => ({ ...b, _i: i, _count: page.blocks.length }));
-
+/* ---------- Шапка, подвал ---------- */
+function SiteHeader({ cfg, page, set }) {
+  const { go } = useCtx();
   return (
-    <div className="flex flex-col min-w-0">
-      {blocks.map((b) => <BlockView key={b.id} b={b} pageId={page.id} />)}
-
-      {admin && (
-        <div className="mt-8 mb-12 flex flex-col items-center gap-4">
-          {!pickType ? (
-            <button type="button" className="tool-btn solid" onClick={() => setPickType(true)}>
-              <Icon n="plus" />Добавить блок
-            </button>
-          ) : (
-            <div className="panel w-full max-w-2xl flex flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <span className="font-semibold">Выберите тип блока</span>
-                <button type="button" className="mini" onClick={() => setPickType(false)}>Отмена</button>
-              </div>
-              <div className="addpick">
-                {Object.entries(TYPES).map(([type, meta]) => (
-                  <button key={type} type="button" onClick={() => { act.add(page.id, type); setPickType(false); }}>
-                    <strong>{meta.name}</strong>
-                    <small>{meta.hint}</small>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+    <header className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-6 sm:px-6">
+      <div className="brand min-w-0">
+        {cfg.logo ? <img className="logo" src={cfg.logo} alt="" /> : <span className="mark" aria-hidden="true" />}
+        <Editable value={cfg.brand} placeholder="Название сайта" onChange={(v) => set({ brand: v })} />
+      </div>
+      <nav className="flex flex-wrap gap-x-5 gap-y-1" aria-label="Страницы">
+        {cfg.pages.filter((p) => p.nav).map((p) => (
+          <button key={p.id} type="button" className="navlink" aria-current={p.id === page.id ? 'page' : undefined} onClick={() => go(p.id)}>{p.title || 'Без названия'}</button>
+        ))}
+      </nav>
+    </header>
+  );
+}
+function SiteFooter({ cfg, set }) {
+  const { admin } = useCtx();
+  if (!admin && !cfg.contact && !cfg.footer) return null;
+  return (
+    <footer className="mx-auto w-full max-w-5xl px-4 sm:px-6">
+      <div className="rule mt-10 flex flex-col gap-6 py-10 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex min-w-0 flex-col gap-2">
+          <span className="label">Контакты</span>
+          <Editable as="p" className="text-lg font-medium" value={cfg.contact} placeholder="Почта или телефон" onChange={(v) => set({ contact: v })} />
         </div>
-      )}
+        <Editable as="p" className="lead text-sm" value={cfg.footer} placeholder="Текст подвала" onChange={(v) => set({ footer: v })} />
+      </div>
+    </footer>
+  );
+}
+
+/* ---------- Верхняя панель ролей ---------- */
+async function doLogin() {
+  const login = prompt('Логин администратора:'); if (!login) return;
+  const password = prompt('Пароль:'); if (password == null) return;
+  const r = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ login, password }) });
+  if (r.ok) location.reload(); else alert((await r.json()).error || 'Ошибка входа');
+}
+async function doLogout() { await fetch('/api/logout', { method: 'POST' }); location.reload(); }
+function RoleBar({ role, setRole, saved }) {
+  const user = window.__BOOT && window.__BOOT.user;
+  const isAdmin = role === 'admin';
+  let status = 'Изменения сохраняются автоматически';
+  if (saved?.ok) status = 'Сохранено в ' + saved.time;
+  if (saved && !saved.ok) status = 'Не сохранено на сервере — проверьте соединение и вход';
+  return (
+    <div className="rolebar">
+      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:px-6">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="label hidden sm:inline">Режим</span>
+          <div className="seg" role="group" aria-label="Роль пользователя">
+            <button type="button" aria-pressed={!isAdmin} onClick={() => setRole('viewer')}>Гость (Viewer)</button>
+            <button type="button" aria-pressed={isAdmin} onClick={() => (user ? setRole('admin') : doLogin())}>Администратор (Admin)</button>
+          </div>
+        </div>
+        {user && <button type="button" className="tool-btn" onClick={doLogout}>Выйти ({user})</button>}
+        {isAdmin && <span className="status" role="status" data-bad={!!saved && !saved.ok}><span className="dot" aria-hidden="true" /><span>{status}</span></span>}
+      </div>
     </div>
   );
 }
 
-/* ---------- Панель управления АДМИНА ---------- */
-function AdminPanel({ cfg, act, activePageId, setPageId }) {
-  const [tab, setTab] = useState('pages');
-  const { saveStatus, quotaUsed } = useCtx();
-
+/* ---------- Панель администратора ---------- */
+const SWATCHES = [
+  ['#4f46e5', 'Индиго'], ['#2563eb', 'Синий'], ['#0d9488', 'Бирюзовый'], ['#16a34a', 'Зелёный'],
+  ['#d97706', 'Янтарный'], ['#e11d48', 'Малиновый'], ['#3f3f46', 'Графит'],
+];
+function HexInput({ value, onValid, id }) {
+  const [draft, setDraft] = useState(value);
+  useEffect(() => setDraft(value), [value]);
   return (
-    <div className="mb-8 flex flex-col gap-4">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--line)] pb-3">
-        <div className="seg">
-          <button type="button" aria-pressed={tab === 'pages'} onClick={() => setTab('pages')}>Страницы</button>
-          <button type="button" aria-pressed={tab === 'style'} onClick={() => setTab('style')}>Стиль и Темы</button>
-          <button type="button" aria-pressed={tab === 'brand'} onClick={() => setTab('brand')}>Шапка и Подвал</button>
+    <input id={id} className="field hex" value={draft} maxLength={7} spellCheck={false} aria-label="Код цвета в формате HEX"
+      onChange={(e) => {
+        let v = e.target.value.trim();
+        if (v && v[0] !== '#') v = '#' + v;
+        setDraft(v);
+        if (HEX.test(v)) onValid(v.toLowerCase());
+      }} />
+  );
+}
+function ColorPicker({ value, onChange, idBase }) {
+  return (
+    <div className="flex min-w-0 flex-col gap-3">
+      <div className="flex flex-wrap items-center gap-2">
+        {SWATCHES.map(([hex, name]) => (
+          <button key={hex} type="button" className="swatch" style={{ background: hex }} aria-label={name} title={name} aria-pressed={value.toLowerCase() === hex} onClick={() => onChange(hex)} />
+        ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        <input id={idBase + '-picker'} type="color" value={value} aria-label="Выбрать свой цвет" onChange={(e) => onChange(e.target.value)} />
+        <HexInput id={idBase + '-hex'} value={value} onValid={onChange} />
+      </div>
+    </div>
+  );
+}
+
+function PagesTab({ cfg, page, go, act }) {
+  const upd = (f) => act.setPage(page.id, f);
+  const idx = cfg.pages.findIndex((p) => p.id === page.id);
+  return (
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-wrap items-center gap-2">
+        {cfg.pages.map((p) => (
+          <button key={p.id} type="button" className="chip" aria-pressed={p.id === page.id} onClick={() => go(p.id)}>
+            {p.title || 'Без названия'}{!p.nav && <span className="muted"> · скрыта</span>}
+          </button>
+        ))}
+        <button type="button" className="tool-btn solid" onClick={act.addPage}><Icon n="plus" />Новая страница</button>
+      </div>
+      <div className="grid gap-5 md:grid-cols-[1.2fr_1fr_1.2fr]">
+        <div className="flex min-w-0 flex-col gap-3">
+          <label className="label" htmlFor="page-title">Название страницы</label>
+          <input id="page-title" className="field" value={page.title} placeholder="Название" onChange={(e) => upd({ title: e.target.value })} />
+          <label className="check"><input type="checkbox" checked={page.nav} onChange={(e) => upd({ nav: e.target.checked })} />Показывать в меню сайта</label>
         </div>
-        <div className="status" data-bad={quotaUsed > 80}>
-          <span className="dot" />
-          <span>{saveStatus}</span>
+        <div className="flex min-w-0 flex-col gap-3">
+          <span className="label">Цвет этой страницы</span>
+          {page.accent ? (
+            <>
+              <ColorPicker value={page.accent} onChange={(v) => upd({ accent: v })} idBase="page-accent" />
+              <button type="button" className="tool-btn self-start" onClick={() => upd({ accent: null })}>Как у всего сайта</button>
+            </>
+          ) : (
+            <>
+              <p className="hint">Сейчас страница использует основной цвет сайта.</p>
+              <button type="button" className="tool-btn self-start" onClick={() => upd({ accent: cfg.primary })}>Свой цвет для страницы</button>
+            </>
+          )}
+        </div>
+        <div className="flex min-w-0 flex-col items-start gap-3">
+          <span className="label">Страница</span>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" className="tool-btn" disabled={idx === 0} onClick={() => act.movePage(page.id, -1)}><Icon n="left" />Влево</button>
+            <button type="button" className="tool-btn" disabled={idx === cfg.pages.length - 1} onClick={() => act.movePage(page.id, 1)}>Вправо<Icon n="right" /></button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" className="tool-btn" onClick={() => act.dupPage(page.id)}><Icon n="copy" />Дублировать</button>
+            <Confirm variant="tool" text="Удалить" confirmText="Удалить страницу?" disabled={cfg.pages.length <= 1} onConfirm={() => act.delPage(page.id)} />
+          </div>
         </div>
       </div>
-
-      {tab === 'pages' && (
-        <div className="panel flex flex-col gap-4">
-          <div className="flex flex-wrap gap-2 items-center">
-            {cfg.pages.map((p, i) => (
-              <div key={p.id} className="flex items-center gap-1 bg-[var(--bg)] border border-[var(--line)] rounded-lg p-1">
-                <button type="button" className="navlink px-2 text-sm" aria-current={p.id === activePageId ? 'page' : undefined} onClick={() => setPageId(p.id)}>
-                  {p.title || 'Без названия'}
-                </button>
-                <div className="tools">
-                  <button type="button" className="icon-btn" disabled={i === 0} onClick={() => act.movePage(p.id, -1)}><Icon n="left" /></button>
-                  <button type="button" className="icon-btn" disabled={i === cfg.pages.length - 1} onClick={() => act.movePage(p.id, 1)}><Icon n="right" /></button>
-                  <Confirm label="Удалить страницу" disabled={cfg.pages.length <= 1} onConfirm={() => act.removePage(p.id)} />
-                </div>
-              </div>
-            ))}
-            <button type="button" className="tool-btn" onClick={() => act.addPage()}><Icon n="plus" />Страница</button>
-          </div>
-
-          {cfg.pages.find((p) => p.id === activePageId) && (
-            <div className="flex flex-wrap gap-4 items-center pt-2 border-t border-[var(--line)]">
-              <div className="flex items-center gap-2">
-                <span className="label">Название:</span>
-                <input className="field" style={{ width: 180 }} value={cfg.pages.find((p) => p.id === activePageId).title} onChange={(e) => act.patchPage(activePageId, { title: e.target.value })} />
-              </div>
-              <label className="check">
-                <input type="checkbox" checked={cfg.pages.find((p) => p.id === activePageId).nav} onChange={(e) => act.patchPage(activePageId, { nav: e.target.checked })} />
-                <span>Показывать в меню</span>
-              </label>
-            </div>
-          )}
-        </div>
-      )}
-
-      {tab === 'style' && (
-        <div className="panel flex flex-wrap gap-6 items-center">
-          <Choice label="Тема" value={cfg.theme} onChange={(v) => act.setTheme(v)} options={[['light', 'Светлая'], ['dark', 'Тёмная']]} />
-          <div className="choice">
-            <span className="label">Основной цвет</span>
-            <div className="flex items-center gap-2">
-              <input type="color" value={cfg.primary} onChange={(e) => act.setPrimary(e.target.value)} />
-              <input className="field hex" value={cfg.primary} onChange={(e) => HEX.test(e.target.value) && act.setPrimary(e.target.value)} />
-            </div>
-          </div>
-          <Choice label="Шрифт" value={cfg.font} onChange={(v) => act.setFont(v)} options={Object.entries(window.siteTheme.fonts).map(([k, f]) => [k, f.label])} />
-          <Choice label="Скругления" value={cfg.radius} onChange={(v) => act.setRadius(Number(v))} options={[['0', '0'], ['8', '8px'], ['14', '14px'], ['24', '24px']]} />
-        </div>
-      )}
-
-      {tab === 'brand' && (
-        <div className="panel flex flex-wrap gap-6 items-center">
-          <div className="choice grow">
-            <span className="label">Название бренда</span>
-            <input className="field" value={cfg.brand} onChange={(e) => act.setBrand(e.target.value)} />
-          </div>
-          <div className="choice grow">
-            <span className="label">Контактный Email</span>
-            <input className="field" value={cfg.contact} onChange={(e) => act.setContact(e.target.value)} />
-          </div>
-          <div className="choice grow">
-            <span className="label">Текст в подвале</span>
-            <input className="field" value={cfg.footer} onChange={(e) => act.setFooter(e.target.value)} />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
 
-/* ---------- Главный компонент Приложения ---------- */
+function DesignTab({ cfg, set, saved, act }) {
+  const fonts = window.siteTheme.fonts;
+  const size = saved?.size ?? JSON.stringify(cfg).length;
+  const pct = Math.min(100, Math.round((size / QUOTA_CHARS) * 100));
+  return (
+    <div className="grid gap-6 md:grid-cols-3">
+      <div className="flex min-w-0 flex-col gap-3">
+        <span className="label">Основной цвет сайта</span>
+        <ColorPicker value={cfg.primary} onChange={(v) => set({ primary: v })} idBase="primary" />
+      </div>
+      <div className="flex min-w-0 flex-col gap-4">
+        <Choice label="Тема" value={cfg.theme} onChange={(v) => set({ theme: v })} options={[['light', 'Светлая'], ['dark', 'Тёмная']]} />
+        <Choice label="Шрифты" value={cfg.font} onChange={(v) => set({ font: v })} options={Object.entries(fonts).map(([k, f]) => [k, f.label])} />
+        <Choice label="Скругление" value={cfg.radius} onChange={(v) => set({ radius: Number(v) })} options={[['0', 'Острые'], ['8', 'Лёгкие'], ['14', 'Мягкие'], ['24', 'Круглые']]} />
+      </div>
+      <div className="flex min-w-0 flex-col items-start gap-3">
+        <span className="label">Логотип</span>
+        <div className="flex flex-wrap gap-2">
+          <PickButton className="tool-btn" opts={{ max: 320, type: 'image/png', limit: 120000 }} onPick={(u) => set({ logo: u })}><Icon n="upload" />{cfg.logo ? 'Заменить' : 'Загрузить'}</PickButton>
+          {cfg.logo && <button type="button" className="tool-btn" onClick={() => set({ logo: null })}>Убрать</button>}
+        </div>
+        <div className="w-full">
+          <div className="meter" data-warn={pct > 80} role="img" aria-label={'Занято ' + pct + ' процентов хранилища'}><i style={{ width: pct + '%' }} /></div>
+          <p className="hint mt-2">Хранилище браузера: {(size / 1e6).toFixed(1)} из ≈5 МБ. Фото сжимаются при загрузке.</p>
+        </div>
+        <button type="button" className="tool-btn" onClick={act.reset}><Icon n="reset" />Сбросить всё</button>
+      </div>
+    </div>
+  );
+}
+
+function DataTab({ cfg, act, notify }) {
+  const [text, setText] = useState('');
+  const [exportText, setExportText] = useState('');
+  const copy = async () => {
+    const json = JSON.stringify(cfg);
+    try { await navigator.clipboard.writeText(json); notify('Настройки скопированы'); setExportText(''); }
+    catch (e) { setExportText(json); notify('Не удалось скопировать автоматически. Выделите текст ниже и скопируйте его.'); }
+  };
+  return (
+    <div className="grid gap-6 md:grid-cols-2">
+      <div className="flex min-w-0 flex-col items-start gap-3">
+        <span className="label">Перенос на другое устройство</span>
+        <p className="hint">Данные хранятся только в этом браузере. Скопируйте настройки и вставьте их на другом устройстве справа.</p>
+        <button type="button" className="tool-btn" onClick={copy}><Icon n="copy" />Скопировать настройки</button>
+        {exportText && <textarea id="export-json" className="field" readOnly value={exportText} onFocus={(e) => e.target.select()} aria-label="Настройки для копирования" />}
+      </div>
+      <div className="flex min-w-0 flex-col items-start gap-3">
+        <label className="label" htmlFor="import-json">Вставить настройки</label>
+        <textarea id="import-json" className="field" value={text} onChange={(e) => setText(e.target.value)} placeholder="Вставьте скопированные настройки" />
+        <button type="button" className="tool-btn" disabled={!text.trim()} onClick={() => { if (act.applyImport(text)) setText(''); }}>Применить</button>
+      </div>
+    </div>
+  );
+}
+
+function AdminPanel({ cfg, page, set, go, act, saved, notify }) {
+  const [tab, setTab] = useState('pages');
+  const [open, setOpen] = useState(true);
+  return (
+    <section aria-label="Панель администратора" className="mx-auto w-full max-w-5xl px-4 pt-5 sm:px-6">
+      <div className="panel">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="seg" role="group" aria-label="Разделы панели">
+            {[['pages', 'Страницы'], ['design', 'Оформление'], ['data', 'Данные']].map(([k, t]) => (
+              <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setOpen(true); }}>{t}</button>
+            ))}
+          </div>
+          <button type="button" className="tool-btn" onClick={() => setOpen((o) => !o)}>{open ? 'Свернуть панель' : 'Развернуть панель'}</button>
+        </div>
+        {open && tab === 'pages' && <PagesTab cfg={cfg} page={page} go={go} act={act} />}
+        {open && tab === 'design' && <DesignTab cfg={cfg} set={set} saved={saved} act={act} />}
+        {open && tab === 'data' && <DataTab cfg={cfg} act={act} notify={notify} />}
+      </div>
+      <p className="hint mt-3">
+        Нажмите на любой текст на странице, чтобы изменить его. <kbd>Enter</kbd> сохраняет, <kbd>Esc</kbd> отменяет. В длинных текстах <kbd>Enter</kbd> делает новый абзац, а <kbd>Ctrl</kbd>+<kbd>Enter</kbd> сохраняет.
+      </p>
+    </section>
+  );
+}
+
+/* ---------- Приложение ---------- */
 function App() {
   const [cfg, setCfg] = useState(loadConfig);
-  const [role, setRole] = useState(loadRole);
-  const [activePageId, setActivePageId] = useState(() => cfg.pages[0]?.id || 'home');
-  const [saveStatus, setSaveStatus] = useState('Сохранено');
-  const [quotaUsed, setQuotaUsed] = useState(0);
+  const [pageId, setPageId] = useState('home');
+  const [saved, setSaved] = useState(null);
+  const [toast, setToast] = useState(null);
+  const skipSave = useRef(true);
+  const admin = false; // только режим гостя
+  const page = cfg.pages.find((p) => p.id === pageId) || cfg.pages[0];
 
-  const admin = role === 'admin';
-
-  // Сохранение конфигурации
+  const notify = (msg) => setToast({ msg, k: Date.now() });
   useEffect(() => {
-    window.siteTheme.apply(cfg);
-    try {
-      const json = JSON.stringify(cfg);
-      localStorage.setItem(KEY, json);
-      setQuotaUsed(Math.round((json.length / QUOTA_CHARS) * 100));
-      setSaveStatus('Сохранено ' + nowTime());
-    } catch (e) {
-      setSaveStatus('Ошибка сохранения');
-    }
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 4500);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  useLayoutEffect(() => { window.siteTheme.apply(cfg); }, [cfg.theme, cfg.primary, cfg.font, cfg.radius]);
+
+  useEffect(() => {
+    if (skipSave.current) { skipSave.current = false; return; }
+    if (!window.__BOOT || !window.__BOOT.user) return;
+    const t = setTimeout(async () => {
+      try {
+        const json = JSON.stringify(cfg);
+        const r = await fetch('/api/config', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: json });
+        if (r.status === 401) { window.__BOOT.user = null; throw new Error('Сессия истекла — войдите снова'); }
+        if (!r.ok) throw new Error('Ошибка сервера ' + r.status);
+        setSaved({ ok: true, time: nowTime(), size: json.length });
+      } catch (e) { setSaved({ ok: false }); notify('Не сохранено на сервере: ' + e.message); }
+    }, 4000);
+    return () => clearTimeout(t);
   }, [cfg]);
 
-  // Загрузка/Сохранение Роли
-  const switchRole = (r) => {
-    setRole(r);
-    try { localStorage.setItem(ROLE_KEY, r); } catch (e) {}
-  };
+  
+
+  useEffect(() => {
+    const onStorage = (e) => {
+      if (e.key !== KEY || !e.newValue) return;
+      try { skipSave.current = true; setCfg(sanitize(JSON.parse(e.newValue))); } catch (err) { skipSave.current = false; }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
 
   const upload = async (file, opts) => {
-    try {
-      return await fileToDataUrl(file, opts);
-    } catch (e) {
-      alert('Ошибка при загрузке изображения');
-      return null;
-    }
+    try { return await fileToDataUrl(file, opts); }
+    catch (e) { notify('Не удалось прочитать файл. Выберите изображение JPG, PNG, WebP или GIF.'); return null; }
   };
+  const go = (id) => { setPageId(id); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
+  const set = (f) => setCfg((c) => ({ ...c, ...f }));
+  const setPage = (id, f) => setCfg((c) => ({ ...c, pages: c.pages.map((p) => (p.id === id ? { ...p, ...(typeof f === 'function' ? f(p) : f) } : p)) }));
   const act = {
-    add: (pageId, type) => setCfg((c) => ({ ...c, pages: c.pages.map((p) => (p.id === pageId ? { ...p, blocks: [...p.blocks, newBlock(type)] } : p)) })),
-    patch: (pageId, blockId, f) => setCfg((c) => ({
-      ...c,
-      pages: c.pages.map((p) => (p.id === pageId ? { ...p, blocks: p.blocks.map((b) => (b.id === blockId ? (typeof f === 'function' ? f(b) : { ...b, ...f }) : b)) } : p))
-    })),
-    remove: (pageId, blockId) => setCfg((c) => ({ ...c, pages: c.pages.map((p) => (p.id === pageId ? { ...p, blocks: p.blocks.filter((b) => b.id !== blockId) } : p)) })),
-    move: (pageId, blockId, dir) => setCfg((c) => ({ ...c, pages: c.pages.map((p) => (p.id === pageId ? { ...p, blocks: moved(p.blocks, blockId, dir) } : p)) })),
-    dup: (pageId, blockId) => setCfg((c) => ({
-      ...c,
-      pages: c.pages.map((p) => {
-        if (p.id !== pageId) return p;
-        const i = p.blocks.findIndex((b) => b.id === blockId);
-        if (i < 0) return p;
-        const nb = reid(clone(p.blocks[i]));
-        const b = [...p.blocks]; b.splice(i + 1, 0, nb);
-        return { ...p, blocks: b };
-      })
-    })),
-    addPage: () => {
-      const np = { id: uid(), title: 'Новая страница', nav: true, accent: null, blocks: [newBlock('hero')] };
-      setCfg((c) => ({ ...c, pages: [...c.pages, np] }));
-      setActivePageId(np.id);
-    },
-    patchPage: (id, f) => setCfg((c) => ({ ...c, pages: c.pages.map((p) => (p.id === id ? { ...p, ...f } : p)) })),
-    removePage: (id) => setCfg((c) => {
-      if (c.pages.length <= 1) return c;
-      const np = c.pages.filter((p) => p.id !== id);
-      if (activePageId === id) setActivePageId(np[0].id);
-      return { ...c, pages: np };
+    setPage,
+    patch: (pid, bid, f) => setPage(pid, (p) => ({ blocks: p.blocks.map((b) => (b.id === bid ? { ...b, ...(typeof f === 'function' ? f(b) : f) } : b)) })),
+    move: (pid, bid, d) => setPage(pid, (p) => ({ blocks: moved(p.blocks, bid, d) })),
+    dup: (pid, bid) => setPage(pid, (p) => {
+      const i = p.blocks.findIndex((b) => b.id === bid);
+      if (i < 0) return {};
+      const blocks = [...p.blocks]; blocks.splice(i + 1, 0, reid(p.blocks[i])); return { blocks };
     }),
-    movePage: (id, dir) => setCfg((c) => ({ ...c, pages: moved(c.pages, id, dir) })),
-    setTheme: (theme) => setCfg((c) => ({ ...c, theme })),
-    setPrimary: (primary) => setCfg((c) => ({ ...c, primary })),
-    setFont: (font) => setCfg((c) => ({ ...c, font })),
-    setRadius: (radius) => setCfg((c) => ({ ...c, radius })),
-    setBrand: (brand) => setCfg((c) => ({ ...c, brand })),
-    setContact: (contact) => setCfg((c) => ({ ...c, contact })),
-    setFooter: (footer) => setCfg((c) => ({ ...c, footer })),
+    remove: (pid, bid) => setPage(pid, (p) => ({ blocks: p.blocks.filter((b) => b.id !== bid) })),
+    add: (pid, type) => setPage(pid, (p) => ({ blocks: [...p.blocks, newBlock(type)] })),
+    addPage: () => {
+      const id = uid(); const hero = newBlock('hero'); hero.title = 'Новая страница';
+      setCfg((c) => ({ ...c, pages: [...c.pages, { id, title: 'Новая страница', nav: true, accent: null, blocks: [hero] }] }));
+      setPageId(id); window.scrollTo({ top: 0 });
+    },
+    dupPage: (id) => {
+      const src = cfg.pages.find((p) => p.id === id); if (!src) return;
+      const copy = { ...reid(src), title: src.title + ' (копия)' };
+      setCfg((c) => { const i = c.pages.findIndex((p) => p.id === id); const pages = [...c.pages]; pages.splice(i + 1, 0, copy); return { ...c, pages }; });
+      setPageId(copy.id);
+    },
+    delPage: (id) => setCfg((c) => (c.pages.length <= 1 ? c : { ...c, pages: c.pages.filter((p) => p.id !== id) })),
+    movePage: (id, d) => setCfg((c) => ({ ...c, pages: moved(c.pages, id, d) })),
+    reset: () => { setCfg(makeDefault()); setPageId('home'); notify('Сайт сброшен к исходному виду'); },
+    applyImport: (text) => {
+      try { const o = JSON.parse(text); if (!o || !Array.isArray(o.pages)) throw new Error('bad'); setCfg(sanitize(o)); setPageId(o.pages[0]?.id || 'home'); notify('Настройки применены'); return true; }
+      catch (e) { notify('Не удалось прочитать настройки. Вставьте текст целиком, как он был скопирован.'); return false; }
+    },
   };
 
-  const activePage = cfg.pages.find((p) => p.id === activePageId) || cfg.pages[0];
+  const ctx = { admin, pages: cfg.pages, go, upload, notify };
+  const scopeStyle = page.accent ? { '--primary': page.accent, '--on-primary': window.siteTheme.on(page.accent) } : undefined;
 
   return (
-    <Ctx.Provider value={{ admin, go: setActivePageId, pages: cfg.pages, upload, act, saveStatus, quotaUsed }}>
-      <div className="min-h-screen flex flex-col">
-        {/* Переключатель ролей */}
-        <div className="rolebar px-4 py-2 flex items-center justify-between">
-          <div className="seg">
-            <button type="button" aria-pressed={role === 'admin'} onClick={() => switchRole('admin')}>Редактирование</button>
-            <button type="button" aria-pressed={role === 'viewer'} onClick={() => switchRole('viewer')}>Просмотр</button>
-          </div>
+    <Ctx.Provider value={ctx}>
+      <div className="flex min-h-screen flex-col">
+        <div className="scope flex flex-1 flex-col" style={scopeStyle}>
+          <SiteHeader cfg={cfg} page={page} set={set} />
+          <main className="mx-auto w-full max-w-5xl min-w-0 flex-1 px-4 sm:px-6">
+            <PageView key={page.id} page={page} act={act} />
+          </main>
+          <SiteFooter cfg={cfg} set={set} />
         </div>
-
-        <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-6 flex flex-col">
-          {admin && <AdminPanel cfg={cfg} act={act} activePageId={activePageId} setPageId={setActivePageId} />}
-
-          {/* Шапка сайта */}
-          <header className="flex flex-wrap items-center justify-between gap-4 py-4 border-b border-[var(--line)] mb-6">
-            <div className="brand cursor-pointer" onClick={() => setActivePageId(cfg.pages[0]?.id || 'home')}>
-              {cfg.logo ? <img src={cfg.logo} alt={cfg.brand} className="logo" /> : <span className="mark" />}
-              <span>{cfg.brand}</span>
-            </div>
-            <nav className="flex flex-wrap gap-4 items-center">
-              {cfg.pages.filter((p) => p.nav).map((p) => (
-                <button key={p.id} type="button" className="navlink" aria-current={p.id === activePage.id ? 'page' : undefined} onClick={() => setActivePageId(p.id)}>
-                  {p.title}
-                </button>
-              ))}
-            </nav>
-          </header>
-
-          {/* Содержимое страницы */}
-          <div className="flex-1">
-            <PageView page={activePage} />
-          </div>
-
-          {/* Подвал сайта */}
-          <footer className="mt-16 py-8 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-4 text-sm text-[var(--muted)]">
-            <div>{cfg.footer}</div>
-            {cfg.contact && <div>E-mail: <a href={'mailto:' + cfg.contact} className="underline">{cfg.contact}</a></div>}
-          </footer>
-        </main>
+        {toast && <div className="toast" role="status">{toast.msg}</div>}
       </div>
     </Ctx.Provider>
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+(async () => {
+  const j = (u) => fetch(u, { cache: 'no-store' }).then((r) => r.json()).catch(() => null);
+  const [cfg, me] = await Promise.all([j('/api/config'), j('/api/me')]);
+  window.__BOOT = { cfg, user: me && me.user };
+  if (cfg) window.siteTheme.apply(cfg);
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+})();
 </script>
+
 </body></html>
