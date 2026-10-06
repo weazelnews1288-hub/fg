@@ -6,12 +6,12 @@
   :root {
     --bg: #fafaf9;
     --surface: #ffffff;
-    --fg: #16161a;
+    --fg: #8E0A10;
     --muted: #6a6a75;
     --line: #e6e6ea;
     --seg: #ececef;
     --danger: #d92d20;
-    --primary: #4f46e5;
+    --primary: #8E0A10;
     --on-primary: #ffffff;
     --font-body: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-head: var(--font-body);
@@ -384,13 +384,13 @@ const isEmpty = (b) => {
 /* ---------- Данные по умолчанию, проверка и перенос ---------- */
 function makeDefault() {
   const hero = Object.assign(newBlock('hero'), {
-    eyebrow: 'Студия цифровых продуктов',
-    title: 'Делаем сайты, которыми удобно пользоваться',
-    text: 'Небольшая команда дизайнеров и разработчиков. Берём задачу от первого наброска до запуска и сопровождаем проект после релиза.',
-    btn: { label: 'Обсудить проект', link: 'page:contact' },
+    eyebrow: 'Weazel News',
+    title: 'Главные новости дня',
+    text: 'Будьте в курсе последних событий с Weazle News. Актуальные новости каждый день.',
+    btn: { label: 'Связаться с нами', link: 'page:contact' },
   });
   const cards = Object.assign(newBlock('cards'), {
-    title: 'Чем мы занимаемся', lead: 'Три направления, в которых у нас больше всего опыта.',
+    title: 'Чем мы занимаемся', lead: '',
     items: [
       mk({ tag: 'Дизайн', title: 'Интерфейсы и айдентика', text: 'Прототипы, дизайн-системы и фирменный стиль, которые легко развивать.', image: null }),
       mk({ tag: 'Разработка', title: 'Сайты и веб-приложения', text: 'Быстрая вёрстка, чистый код и аккуратная работа с контентом.', image: null }),
@@ -415,10 +415,10 @@ function makeDefault() {
     mk({ q: 'Вы поддерживаете сайт после запуска?', a: 'Да, по отдельному соглашению. Исправляем ошибки и помогаем с обновлениями.' }) ] });
   return {
     v: 2, theme: 'light', primary: '#4f46e5', font: 'modern', radius: 14,
-    brand: 'Атлас', logo: null, contact: 'hello@example.com', footer: '© 2026 Атлас. Все права защищены.',
+    brand: 'Weazel News', logo: null, contact: 'hello@example.com', footer: '© 2026 Атлас. Все права защищены.',
     pages: [
       { id: 'home', title: 'Главная', nav: true, accent: null, blocks: [hero, cards, stats, cta] },
-      { id: 'about', title: 'О нас', nav: true, accent: null, blocks: [split, how] },
+      { id: 'about', title: 'Билдборды', nav: true, accent: null, blocks: [split, how] },
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
     ],
   };
