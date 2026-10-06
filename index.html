@@ -398,26 +398,26 @@ function makeDefault() {
       tag: 'Новости',
       title: 'Главные события дня',
       text: 'Короткий обзор самых важных событий, произошедших сегодня в городе.',
-      image: ''
+      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80'
     }),
     mk({
       tag: 'Город',
       title: 'Что происходит в городе',
       text: 'Последние события, изменения и интересные новости со всех районов.',
-      image: ''
+      image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80'
     }),
     mk({
       tag: 'Эксклюзив',
       title: 'Новое расследование Weazel News',
       text: 'Наша редакция продолжает следить за важными событиями и готовит новые материалы.',
-      image: ''
+      image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80'
     })
   ]
 });
   const newsed = Object.assign(newBlock('split'), {
   title: 'Последние новости',
   text: 'Главные события и новости города от Weazel News. Следите за свежими событиями, расследованиями и важными изменениями.',
-  image: ''
+  image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
   btn: {
     label: 'Читать новость',
     link: 'page:news'
@@ -449,7 +449,7 @@ function makeDefault() {
       mk({
         tag: 'Центр',
         title: 'Билборд №1 — Вайнвуд Бульвар',
-        text: 'находится по улице - 3036 [ЗАНЯТ]',
+        text: 'Высокий пешеходный и автомобильный трафик. Размеры: 6x3 м.',
         image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80'
       }),
       mk({
@@ -589,6 +589,8 @@ function makeDefault() {
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
     ],
   };
+}
+
 const cleanImg = (v) => (typeof v === 'string' && v.startsWith('data:image/') ? v : null);
 function normBlock(b) {
   if (!b || typeof b !== 'object' || !NEW[b.type]) return null;
