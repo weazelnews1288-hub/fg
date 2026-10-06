@@ -403,126 +403,13 @@ function makeDefault() {
   const split = Object.assign(newBlock('split'), {
     title: 'Размещение рекламы на билбордах: охватные локации и высокий трафик',
     text: '', });
- const billboards = Object.assign(newBlock('cards'), {
-  title: 'Наши билборды',
-  lead: 'Выберите подходящую рекламную площадку',
-  cols: 3,
-  items: [
-    mk({
-      tag: 'Билборд 8177',
-      title: '8177',
-      text: '4000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 7105',
-      title: '7105',
-      text: '10000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 7326',
-      title: '7326',
-      text: '10000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 8182',
-      title: '8182',
-      text: '4500 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 9248',
-      title: '9248',
-      text: '4000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 9035',
-      title: '9035',
-      text: '6000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 9061',
-      title: '9061',
-      text: '6000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 9052',
-      title: '9052',
-      text: '7000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 9187',
-      title: '9187',
-      text: '5000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 9162',
-      title: '9162',
-      text: '4000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 7205',
-      title: '7205',
-      text: '8000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 7079',
-      title: '7079',
-      text: '10000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 9000',
-      title: '9000',
-      text: '4000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 3036',
-      title: '3036',
-      text: '3000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 3045',
-      title: '3045',
-      text: '5000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 2048',
-      title: '2048',
-      text: '4000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 3035',
-      title: '3035',
-      text: '3000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 3036',
-      title: '3036',
-      text: '3000 / 2 недели',
-      image: null
-    }),
-    mk({
-      tag: 'Билборд 3030',
-      title: '3030',
-      text: '3000 / 2 недели',
-      image: null
-    }),
-  ],
+  const cards = Object.assign(newBlock('cards'), {
+    title: 'Чем мы занимаемся', lead: '',
+    items: [
+      mk({ tag: 'Дизайн', title: 'Дизайн и Текст', text: '1111', image: null }),
+      mk({ tag: 'Разработка', title: 'Печать и Реклама', text: '1111', image: null }),
+      mk({ tag: 'Сьемка', title: 'Фото и видео', text: '11111', image: null }),
+    ],
 });
   const how = Object.assign(newBlock('text'), {
     title: 'Как мы работаем',
