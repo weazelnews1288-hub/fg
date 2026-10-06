@@ -414,6 +414,15 @@ function makeDefault() {
     })
   ]
 });
+  const newsed = Object.assign(newBlock('split'), {
+  title: 'Последние новости',
+  text: 'Главные события и новости города от Weazel News. Следите за свежими событиями, расследованиями и важными изменениями.',
+  image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
+  btn: {
+    label: 'Читать новость',
+    link: 'page:news'
+  }
+});
   const cards = Object.assign(newBlock('cards'), {
     title: 'Чем мы занимаемся', lead: '',
     items: [
@@ -574,7 +583,7 @@ function makeDefault() {
     v: 2, theme: 'light', primary: '#8E0A10', font: 'modern', radius: 14,
     brand: 'Weazel News', logo: null, contact: 'mercantile1038@gmail.com', footer: '© 2026 Weazel News. Все права защищены.',
     pages: [
-     { id: 'home', title: 'Главная', nav: true, accent: null, blocks: [hero, news, cards, stats, cta] },
+     { id: 'home', title: 'Главная', nav: true, accent: null, blocks: [hero, news, newsed, cards, stats, cta] },
       // --- ВАЖНО: добавлен 'billboards' ---
       { id: 'about', title: 'Билборды', nav: true, accent: null, blocks: [split, billboards, how] },
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
