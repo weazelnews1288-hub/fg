@@ -297,7 +297,7 @@
     apply: function (cfg) {
       cfg = cfg || {};
       var r = document.documentElement, f = FONTS[cfg.font] || FONTS.modern;
-      var hex = HEX.test(cfg.primary || '') ? cfg.primary : '#4f46e5';
+      var hex = HEX.test(cfg.primary || '') ? cfg.primary : '#8E0A10';
       var rad = [0, 8, 14, 24].indexOf(cfg.radius) >= 0 ? cfg.radius : 14;
       r.setAttribute('data-theme', cfg.theme === 'dark' ? 'dark' : 'light');
       r.style.setProperty('--primary', hex);
