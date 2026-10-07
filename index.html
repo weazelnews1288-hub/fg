@@ -563,6 +563,26 @@ function makeDefault() {
       })
     ]
   });
+  const isOccupied = c.tag && c.tag.toLowerCase().includes('занят');
+const isFree = c.tag && c.tag.toLowerCase().includes('свободен');
+
+const tagStyle = isOccupied
+  ? { backgroundColor: '#d92d20', color: '#ffffff' } // Красный для "Занят"
+  : isFree
+  ? { backgroundColor: '#16a34a', color: '#61755d' } // Зеленый для "Свободен"
+  : undefined;
+
+return (
+  <Editable
+    as="span"
+    className="pill"
+    style={tagStyle}
+    value={c.tag}
+    placeholder="Метка"
+    onChange={(v) => L.update(c.id, { tag: v })}
+  />
+);
+
 
   const how = Object.assign(newBlock('text'), {
     title: 'Как мы работаем',
