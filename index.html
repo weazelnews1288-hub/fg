@@ -229,6 +229,11 @@
   .card h3 { font-family: var(--font-head); font-size: 1.125rem; line-height: 1.35; font-weight: 600; letter-spacing: calc(var(--head-ls) / 2); overflow-wrap: anywhere; }
   .card p { color: var(--muted); font-size: .9375rem; overflow-wrap: anywhere; }
   .pill { display: inline-block; font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-text); }
+    /* Цвета тегов на странице билбордов */
+  .pill.pill-free { background: #dbe8d6; color: #4a6b45; }
+  .pill.pill-busy { background: #f0d9d9; color: #8a4444; }
+  :root[data-theme="dark"] .pill.pill-free { background: #26382a; color: #9cc79a; }
+  :root[data-theme="dark"] .pill.pill-busy { background: #3d2425; color: #d9a0a0; }
   .add-tile {
     font: inherit; min-height: 120px; border: 1.5px dashed var(--line); border-radius: var(--radius);
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
@@ -980,7 +985,17 @@ function Cards({ b, patch }) {
               : admin && <PickButton className="mini self-start" onPick={(u) => L.update(c.id, { image: u })}><Icon n="image" size={14} />Добавить фото</PickButton>}
             {(admin || c.tag) && (
               <div className="flex items-start justify-between gap-2">
-                <Editable as="span" className="pill" value={c.tag} placeholder="Метка" onChange={(v) => L.update(c.id, { tag: v })} />
+                <Editable
+  as="span"
+  className={
+    'pill' +
+    (c.tag.trim().toLowerCase() === 'свободен' ? ' pill-free' :
+     c.tag.trim().toLowerCase() === 'занят' ? ' pill-busy' : '')
+  }
+  value={c.tag}
+  placeholder="Метка"
+  onChange={(v) => L.update(c.id, { tag: v })}
+/>
                 {admin && <ItemTools i={i} count={b.items.length} what="карточка" onMove={(d) => L.move(c.id, d)} onRemove={() => L.remove(c.id)} />}
               </div>
             )}
