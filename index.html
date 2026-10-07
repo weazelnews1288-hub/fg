@@ -394,6 +394,12 @@ function makeDefault() {
     text: 'Будьте в курсе последних событий с Weazle News. Актуальные новости каждый день.',
     btn: { label: 'Связаться с нами', link: 'page:contact' },
   });
+  const hero = Object.assign(newBlock('fr'), {
+    eyebrow: 'Weazel News',
+    title: 'Запись',
+    text: 'Перейдя по ссылке вы сможете заранее забронировать время и услугу',
+    btn: { label: 'Заполнить форму', link: 'page:contact' },
+  });
   const news = Object.assign(newBlock('cards'), {
   title: 'Последние новости',
   lead: 'Самые свежие события Weazel News',
@@ -586,7 +592,7 @@ function makeDefault() {
       // --- ВАЖНО: добавлен 'billboards' ---
       { id: 'about', title: 'Билборды', nav: true, accent: null, blocks: [split, billboards, how] },
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
-      { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [] },
+      { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [fr] },
     ],
   };
 }
