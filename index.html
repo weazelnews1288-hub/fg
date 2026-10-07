@@ -60,6 +60,13 @@
   .label { font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 
   /* ---------- Панель ролей ---------- */
+    /* ---------- Фоновое фото на всех страницах (приглушённое) ---------- */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: url('https://i.imgur.com/gWB7w4p.jpg') center / cover no-repeat;
+    opacity: .12;
+  }
+  :root[data-theme="dark"] body::before { opacity: .10; }
   .rolebar {
     position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
     background: color-mix(in srgb, var(--bg) 88%, transparent);
