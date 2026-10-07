@@ -982,7 +982,30 @@ function Cards({ b, patch }) {
               : admin && <PickButton className="mini self-start" onPick={(u) => L.update(c.id, { image: u })}><Icon n="image" size={14} />Добавить фото</PickButton>}
             {(admin || c.tag) && (
               <div className="flex items-start justify-between gap-2">
-                <Editable as="span" className="pill" value={c.tag} placeholder="Метка" onChange={(v) => L.update(c.id, { tag: v })} />
+                {(() => {
+  // Определяем цвет в зависимости от текста в c.tag
+  const tagText = (c.tag || '').toLowerCase();
+  const isOccupied = tagText.includes('занят');
+  const isFree = tagText.includes('свободен');
+
+  const tagStyle = isOccupied
+    ? { backgroundColor: '#d92d20', color: '#ffffff' } // Красный фон для «Занят»
+    : isFree
+    ? { backgroundColor: '#16a34a', color: '#ffffff' } // Зеленый фон для «Свободен»
+    : undefined;
+
+  return (
+    <Editable
+      as="span"
+      className="pill"
+      style={tagStyle}
+      value={c.tag}
+      placeholder="Метка"
+      onChange={(v) => L.update(c.id, { tag: v })}
+    />
+  );
+})()}
+
                 {admin && <ItemTools i={i} count={b.items.length} what="карточка" onMove={(d) => L.move(c.id, d)} onRemove={() => L.remove(c.id)} />}
               </div>
             )}
