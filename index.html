@@ -229,6 +229,8 @@
   .card h3 { font-family: var(--font-head); font-size: 1.125rem; line-height: 1.35; font-weight: 600; letter-spacing: calc(var(--head-ls) / 2); overflow-wrap: anywhere; }
   .card p { color: var(--muted); font-size: .9375rem; overflow-wrap: anywhere; }
   .pill { display: inline-block; font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-text); }
+  .pill.tag-occupied { background: #d92d20 !important; color: #ffffff !important; }
+  .pill.tag-free { background: #16a34a !important; color: #ffffff !important; }
   .add-tile {
     font: inherit; min-height: 120px; border: 1.5px dashed var(--line); border-radius: var(--radius);
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
@@ -975,14 +977,38 @@ function Cards({ b, patch }) {
     <>
       <Head b={b} patch={patch} />
       <div className={'grid-n c' + b.cols}>
-        {b.items.map((c, i) => (
-          <article className="card" key={c.id}>
-            {c.image
-              ? <Photo src={c.image} ratio="16/10" onChange={(v) => L.update(c.id, { image: v })} />
-              : admin && <PickButton className="mini self-start" onPick={(u) => L.update(c.id, { image: u })}><Icon n="image" size={14} />Добавить фото</PickButton>}
-            {(admin || c.tag) && (
-              <div className="flex items-start justify-between gap-2">
-                {(() => {
+        {b.items.map((c, i) => {
+          // Определяем класс в зависимости от текста в c.tag
+          const tagText = (c.tag || '').toLowerCase();
+          let tagClass = 'pill';
+          if (tagText.includes('занят')) {
+            tagClass += ' tag-occupied';
+          } else if (tagText.includes('свободен')) {
+            tagClass += ' tag-free';
+          }
+
+          return (
+            <article className="card" key={c.id}>
+              {c.image
+                ? <Photo src={c.image} ratio="16/10" onChange={(v) => L.update(c.id, { image: v })} />
+                : admin && <PickButton className="mini self-start" onPick={(u) => L.update(c.id, { image: u })}><Icon n="image" size={14} />Добавить фото</PickButton>}
+              {(admin || c.tag) && (
+                <div className="flex items-start justify-between gap-2">
+                  <Editable as="span" className={tagClass} value={c.tag} placeholder="Метка" onChange={(v) => L.update(c.id, { tag: v })} />
+                  {admin && <ItemTools i={i} count={b.items.length} what="карточка" onMove={(d) => L.move(c.id, d)} onRemove={() => L.remove(c.id)} />}
+                </div>
+              )}
+              <Editable as="h3" value={c.title} placeholder="Заголовок" onChange={(v) => L.update(c.id, { title: v })} />
+              <Editable as="p" value={c.text} multiline placeholder="Описание" onChange={(v) => L.update(c.id, { text: v })} />
+            </article>
+          );
+        })}
+        {admin && <AddTile min={160} onClick={() => L.add({ tag: 'Метка', title: 'Новая карточка', text: 'Описание карточки.', image: null })}>Добавить карточку</AddTile>}
+      </div>
+    </>
+  );
+}
+
   // Определяем цвет в зависимости от текста в c.tag
   const tagText = (c.tag || '').toLowerCase();
   const isOccupied = tagText.includes('занят');
