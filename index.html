@@ -438,48 +438,7 @@ function makeDefault() {
   const split = Object.assign(newBlock('split'), {
     title: 'Размещение рекламы на билбордах: охватные локации и высокий трафик',
     text: '',
- });
-  const fr = Object.assign(newBlock('hero'), {
-      eyebrow: 'Прайс-лист Weazel News',
-      title: 'Услуги и Стоимость размещения',
-      text: 'Профессиональная медиа-поддержка, эфирное продвижение, авторские статьи и коммерческая съемка от главной новостной редакции.',
-      btn: { label: 'Связаться с нами', link: 'page:contact' },
-      image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80'
   });
-  const ft = Object.assign(newBlock('split'), {
-      title: 'Индивидуальные медиа-решения для бизнеса',
-      text: 'Мы помогаем компаниям и частным лицам грамотно донести информацию до аудитории. Каждый проект проходит полный цикл — от написания сценария до выхода в прямой эфир.',
-      image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
-      side: 'right'
-  });
-  const fy = Object.assign(newBlock('text'), {
-      bg: 'soft',
-      title: 'Пакеты услуг и Прейскурант',
-      text: '• Статьи и Персональные Интервью — $15,000\nПодготовка авторских материалов, журналистские расследования, PR-интервью и статьи на нашем портале.\n\n• Реклама и Эфирные Анонсы — $25,000\nКоммерческая реклама в эфире, текстовые анонсы в бегущей строке и публикация промо-материалов.\n\n• Съемка и Сопровождение Мероприятий — $40,000\nВыезд съемочной группы, репортажи с воздуха, прямые включения и итоговый видеоролик.'
-  });
-  const fu = Object.assign(newBlock('faq'), {
-      title: 'Детали тарифов и Вопросы по оплате',
-      items: [
-        mk({
-          q: 'Что входит в стоимость заказа?',
-          a: 'В каждый тариф входит работа журналиста, редактора, корректора и публикация материала на официальных ресурсах Weazel News.'
-        }),
-        mk({
-          q: 'Как быстро выходят материалы?',
-          a: 'Срок подготовки публикации составляет от 12 до 24 часов с момента согласования ТЗ и оплаты.'
-        }),
-        mk({
-          q: 'Возможно ли составление персонального пакета?',
-          a: 'Да, при масштабных кампаниях мы формируем индивидуальный медиа-план со скидками за объем.'
-        })
-      ]
-    });
-  const fi = Object.assign(newBlock('stats'), {
-      bg: 'soft',
-      title: 'Почему выбирают нас',
-      cols: 3,
-      items: [
-        mk({ value: '100K+', label: 'охват аудитории' }),
 
   // --- ВОТ ДОБАВЛЕННЫЙ БЛОК БИЛБОРДОВ ---
   const billboards = Object.assign(newBlock('cards'), {
@@ -628,11 +587,11 @@ function makeDefault() {
       // --- ВАЖНО: добавлен 'billboards' ---
       { id: 'about', title: 'Билборды', nav: true, accent: null, blocks: [split, billboards, how] },
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
-      { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [fr, ft, fy, fu, fi, fo] },
-   })
-  ]
-},
-    
+      { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [] },
+    ],
+  };
+}
+
 const cleanImg = (v) => {
   if (typeof v !== 'string') return null;
 
