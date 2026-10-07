@@ -394,6 +394,37 @@ function makeDefault() {
     text: 'Будьте в курсе последних событий с Weazle News. Актуальные новости каждый день.',
     btn: { label: 'Связаться с нами', link: 'page:contact' },
   });
+  const prices = Object.assign(newBlock('cards'), {
+  title: 'Цены и услуги',
+  lead: 'За услугами редакции обращайтесь по телефонам или посетите нас лично',
+  cols: 3,
+  items: [
+    mk({
+      tag: '',
+      title: 'ПЕЧАТЬ И РЕКЛАМА',
+      text: 'Визитки (1 шт.) — 25$\nБуклеты (10 шт.) — 400$\nЖурнал (1 шт.) — от 1000$\nМеню (20 шт.) — 500$\nРазмещение рекламы в газете — 800$\nРазмещение рекламы на портале штата — 1500$',
+      image: null
+    }),
+    mk({
+      tag: '',
+      title: 'ФОТО И ВИДЕО',
+      text: 'Фотосессия одиночная (до 10 фото) — 1500$\nФотосессия парная (до 10 фото) — 2000$\nОбработка одного фото — 150$\nРекламные ролики/клипы (до 3 мин) — от 3500$\nМонтаж видео — от 1500$',
+      image: null
+    }),
+    mk({
+      tag: '',
+      title: 'ДИЗАЙН И ТЕКСТ',
+      text: 'Дизайн на заказ — от 1500$\nДизайн меню — от 2000$\nДизайн буклета — от 1000$\nДизайн визитки — от 2000$\n*Цена повышается в зависимости от сложности дизайна\nНаписание заказных статей — 1000$\nЗаказное интервью/репортаж — 2000$',
+      image: null
+    })
+  ]
+});
+const contactInfo = Object.assign(newBlock('text'), {
+  bg: 'soft',
+  title: 'Как с нами связаться',
+  text: 'Little Seoul, 8144\n370-1077 — Molly Mercantile\n872-8988 — Ify Jelani'
+});
+
   const fr = Object.assign(newBlock('hero'), {
     eyebrow: 'Weazel News',
     title: 'Запись',
@@ -592,7 +623,7 @@ function makeDefault() {
       // --- ВАЖНО: добавлен 'billboards' ---
       { id: 'about', title: 'Билборды', nav: true, accent: null, blocks: [split, billboards, how] },
       { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
-      { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [fr] },
+      { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [fr, prices] },
     ],
   };
 }
