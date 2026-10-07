@@ -229,7 +229,14 @@
   .card h3 { font-family: var(--font-head); font-size: 1.125rem; line-height: 1.35; font-weight: 600; letter-spacing: calc(var(--head-ls) / 2); overflow-wrap: anywhere; }
   .card p { color: var(--muted); font-size: .9375rem; overflow-wrap: anywhere; }
   .pill { display: inline-block; font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-text); }
-    /* Цвета тегов на странице билбордов */
+     /* Прайс-колонки */
+  .card.price-card h3 { background: #1f2029; color: #fff; text-align: center; text-transform: uppercase; letter-spacing: .02em; padding: 14px 12px; border-radius: calc(var(--radius) * .5); border-bottom: 3px solid var(--primary); }
+  .price-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .price-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--line); color: var(--fg); font-size: .9375rem; line-height: 1.35; }
+  .price-list li:last-child { border-bottom: 0; }
+  .price-list b { color: var(--primary-text); white-space: nowrap; font-weight: 700; font-size: 1.0625rem; }
+  .price-list li.price-note { display: block; color: var(--muted); font-size: .75rem; padding: 4px 0 12px; }
+  /* Цвета тегов на странице билбордов */
   .pill.pill-free { background: #dbe8d6; color: #4a6b45; }
   .pill.pill-busy { background: #f0d9d9; color: #8a4444; }
   :root[data-theme="dark"] .pill.pill-free { background: #26382a; color: #9cc79a; }
@@ -400,22 +407,19 @@ function makeDefault() {
   cols: 3,
   items: [
     mk({
-      tag: '',
-      title: 'ПЕЧАТЬ И РЕКЛАМА',
-      text: 'Визитки (1 шт.) — 25$\nБуклеты (10 шт.) — 400$\nЖурнал (1 шт.) — от 1000$\nМеню (20 шт.) — 500$\nРазмещение рекламы в газете — 800$\nРазмещение рекламы на портале штата — 1500$',
-      image: null
+      priceList: true, tag: '', image: null,
+      title: 'Печать и реклама',
+      text: 'Визитки (1 шт.) — 25$\nБуклеты (10 шт.) — 400$\nЖурнал (1 шт.) — от 1000$\nМеню (20 шт.) — 500$\nРазмещение рекламы в газете — 800$\nРазмещение рекламы на портале штата — 1500$'
     }),
     mk({
-      tag: '',
-      title: 'ФОТО И ВИДЕО',
-      text: 'Фотосессия одиночная (до 10 фото) — 1500$\nФотосессия парная (до 10 фото) — 2000$\nОбработка одного фото — 150$\nРекламные ролики/клипы (до 3 мин) — от 3500$\nМонтаж видео — от 1500$',
-      image: null
+      priceList: true, tag: '', image: null,
+      title: 'Фото и видео',
+      text: 'Фотосессия одиночная (до 10 фото) — 1500$\nФотосессия парная (до 10 фото) — 2000$\nОбработка одного фото — 150$\nРекламные ролики/клипы (до 3 мин) — от 3500$\nМонтаж видео — от 1500$'
     }),
     mk({
-      tag: '',
-      title: 'ДИЗАЙН И ТЕКСТ',
-      text: 'Дизайн на заказ — от 1500$\nДизайн меню — от 2000$\nДизайн буклета — от 1000$\nДизайн визитки — от 2000$\n*Цена повышается в зависимости от сложности дизайна\nНаписание заказных статей — 1000$\nЗаказное интервью/репортаж — 2000$',
-      image: null
+      priceList: true, tag: '', image: null,
+      title: 'Дизайн и текст',
+      text: 'Дизайн на заказ — от 1500$\nДизайн меню — от 2000$\nДизайн буклета — от 1000$\nДизайн визитки — от 2000$\n*Цена повышается в зависимости от сложности дизайна\nНаписание заказных статей — 1000$\nЗаказное интервью/репортаж — 2000$'
     })
   ]
 });
@@ -1016,7 +1020,7 @@ function Cards({ b, patch }) {
       <Head b={b} patch={patch} />
       <div className={'grid-n c' + b.cols}>
         {b.items.map((c, i) => (
-          <article className="card" key={c.id}>
+          <article className={'card' + (c.priceList ? ' price-card' : '')} key={c.id}>
             {c.image
               ? <Photo src={c.image} ratio="16/10" onChange={(v) => L.update(c.id, { image: v })} />
               : admin && <PickButton className="mini self-start" onPick={(u) => L.update(c.id, { image: u })}><Icon n="image" size={14} />Добавить фото</PickButton>}
@@ -1037,7 +1041,17 @@ function Cards({ b, patch }) {
               </div>
             )}
             <Editable as="h3" value={c.title} placeholder="Заголовок" onChange={(v) => L.update(c.id, { title: v })} />
-            <Editable as="p" value={c.text} multiline placeholder="Описание" onChange={(v) => L.update(c.id, { text: v })} />
+            {c.priceList && !admin ? (
+  <ul className="price-list">
+    {c.text.split('\n').filter(Boolean).map((line, k) => {
+      const p = line.lastIndexOf(' — ');
+      if (p < 0) return <li key={k} className="price-note">{line}</li>;
+      return <li key={k}><span>{line.slice(0, p)}</span><b>{line.slice(p + 3)}</b></li>;
+    })}
+  </ul>
+) : (
+  <Editable as="p" value={c.text} multiline placeholder="Описание" onChange={(v) => L.update(c.id, { text: v })} />
+)}
           </article>
         ))}
         {admin && <AddTile min={160} onClick={() => L.add({ tag: 'Метка', title: 'Новая карточка', text: 'Описание карточки.', image: null })}>Добавить карточку</AddTile>}
