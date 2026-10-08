@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+  <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Weazel News</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Lora:wght@400;500;600&family=Unbounded:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
@@ -359,6 +359,28 @@ footer .rule{border-top:3px solid var(--primary)}
 .team-contact{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:6px;padding-top:14px;border-top:1px dashed var(--line)}
 .team-contact a{font-family:var(--font-mono);font-weight:500;color:var(--primary-text);text-decoration:none}
 .team-contact a:hover{text-decoration:underline}
+  /* ================= BILLBOARD MAP ================= */
+.bbmap-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.bbmap-count{font-family:var(--font-mono);font-size:.8125rem;color:var(--muted)}
+.bbmap-count b{color:#3f9b4f;font-size:1.1rem}
+.bbmap{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#1b1d24;user-select:none}
+.bbmap img{display:block;width:100%;height:auto}
+.bbmap-empty{aspect-ratio:4/3;display:grid;place-items:center;text-align:center;padding:20px;color:#8b8fa0;font-size:.875rem;background-image:linear-gradient(#ffffff0d 1px,transparent 1px),linear-gradient(90deg,#ffffff0d 1px,transparent 1px);background-size:40px 40px}
+.bbpin{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;border:2px solid #fff;padding:0;cursor:pointer;display:grid;place-items:center;color:#fff;font:700 .6875rem var(--font-mono);box-shadow:0 3px 10px rgb(0 0 0/.45);transition:transform .2s,box-shadow .2s;animation:pinIn .4s both;background:var(--primary)}
+.bbpin.free{background:#3f9b4f}
+.bbpin.busy{background:#c0392b}
+.bbpin.free::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #3f9b4f;animation:pinPulse 2s infinite;pointer-events:none}
+.bbpin:hover{transform:translate(-50%,-50%) scale(1.25);z-index:3}
+.bbpin.on{transform:translate(-50%,-50%) scale(1.45);z-index:4;box-shadow:0 0 0 4px rgb(255 255 255/.55),0 4px 14px rgb(0 0 0/.5)}
+@keyframes pinIn{from{opacity:0;transform:translate(-50%,-50%) scale(0)}}
+@keyframes pinPulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.2);opacity:0}}
+.bbinfo{display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);animation:pinIn .3s both}
+.bbinfo .photo{aspect-ratio:16/10}
+.bbinfo h3{font-family:var(--font-head);font-size:1.25rem;line-height:1.3;margin:8px 0 6px}
+.bbinfo p{color:var(--muted)}
+.bbinfo.hint{display:block;text-align:center;color:var(--muted);border-style:dashed}
+@media(max-width:640px){.bbinfo{grid-template-columns:1fr}}
+.bbcal{display:flex;flex-direction:column;gap:10px;padding:14px;border:2px dashed var(--primary);border-radius:var(--radius);background:var(--primary-soft);font-size:.875rem}
 </style> 
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -1270,7 +1292,7 @@ function Cta({ b, patch }) {
 function Divider({ b }) {
   return <div className={'divider ' + b.size} role="separator">{b.line && <hr />}</div>;
 }
-const VIEWS = { hero: Hero, text: TextBlock, cards: (p) => (p.b.team ? <Team {...p} /> : <Cards {...p} />), image: ImageBlock, split: Split, gallery: Gallery, stats: Stats, faq: Faq, cta: Cta, divider: Divider };
+const VIEWS = { hero: Hero, text: TextBlock, cards: (p) => (p.b.team ? <Team {...p} /> : p.b.map ? <BillboardMap {...p} /> : <Cards {...p} />), image: ImageBlock, split: Split, gallery: Gallery, stats: Stats, faq: Faq, cta: Cta, divider: Divider };
 
 function BlockView({ b, i, count, page, act }) {
   const { admin } = useCtx();
@@ -1381,6 +1403,123 @@ function BackToTop() {
           </article>
         ))}
       </div>
+    </>
+  );
+}
+/* ---------- Карта билбордов ---------- */
+const MAP_IMAGE = 'https://imgur.com/ВАША_КАРТА.jpg';   // ← ссылка на картинку карты города
+
+// Координаты точек в процентах [x, y] от картинки. Номер = номер билборда.
+// Заполняется через режим разметки (см. инструкцию), пример: 1: [48.2, 61.5],
+const BB_POS = {
+};
+
+function withMap(cfg) {
+  if (cfg.pages.some((p) => p.blocks.some((b) => b.map))) return cfg;
+  const isBB = (b) => b.type === 'cards' && b.items.some((i) => /№\s*\d+/.test(i.title || ''));
+  const pages = cfg.pages.map((p) => {
+    const k = p.blocks.findIndex(isBB);
+    if (k < 0) return p;
+    const mb = Object.assign(newBlock('cards'), { map: true, title: 'Карта билбордов', lead: 'Нажмите на точку, чтобы увидеть адрес и статус', items: [] });
+    const blocks = [...p.blocks]; blocks.splice(k, 0, mb);
+    return { ...p, blocks };
+  });
+  return { ...cfg, pages };
+}
+
+function BillboardMap({ b, patch }) {
+  const { pages, notify } = useCtx();
+  const calibrate = /[?&]calibrate/.test(window.location.search);
+  const [filter, setFilter] = useState('all');
+  const [sel, setSel] = useState(null);
+  const [pos, setPos] = useState(BB_POS);
+  const [cur, setCur] = useState('');
+  const mapSrc = b.mapImage || MAP_IMAGE;
+
+  const list = [];
+  pages.forEach((p) => p.blocks.forEach((x) => {
+    if (x.type === 'cards' && !x.map && !x.team) x.items.forEach((it) => {
+      const m = /№\s*(\d+)/.exec(it.title || '');
+      if (m) list.push({ ...it, n: Number(m[1]) });
+    });
+  }));
+  list.sort((a, c) => a.n - c.n);
+
+  const status = (it) => { const t = (it.tag || '').trim().toLowerCase(); return t === 'свободен' ? 'free' : t === 'занят' ? 'busy' : 'other'; };
+  const free = list.filter((i) => status(i) === 'free').length;
+  const busy = list.filter((i) => status(i) === 'busy').length;
+  const shown = list.filter((i) => filter === 'all' || status(i) === filter);
+  const placed = shown.filter((i) => pos[i.n]);
+  const active = list.find((i) => i.id === sel);
+
+  const onMapClick = (e) => {
+    if (!calibrate || !cur) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = +(((e.clientX - r.left) / r.width) * 100).toFixed(1);
+    const y = +(((e.clientY - r.top) / r.height) * 100).toFixed(1);
+    setPos((p) => ({ ...p, [cur]: [x, y] }));
+    const i = list.findIndex((it) => String(it.n) === String(cur));
+    setCur(list[i + 1] ? String(list[i + 1].n) : '');
+  };
+  const exportPos = async () => {
+    const text = 'const BB_POS = {\n' + Object.entries(pos).sort((a, c) => a[0] - c[0]).map(([k, v]) => `  ${k}: [${v[0]}, ${v[1]}],`).join('\n') + '\n};';
+    try { await navigator.clipboard.writeText(text); notify('Координаты скопированы — вставьте их вместо BB_POS в коде'); }
+    catch (e) { window.prompt('Скопируйте координаты:', text); }
+  };
+
+  const filters = [['all', 'Все', list.length], ['free', 'Свободные', free], ['busy', 'Занятые', busy]];
+  return (
+    <>
+      <Head b={b} patch={patch} />
+      <div className="bbmap-bar">
+        <div className="seg" role="group" aria-label="Фильтр билбордов">
+          {filters.map(([k, t, n]) => (
+            <button key={k} type="button" aria-pressed={filter === k} onClick={() => { setFilter(k); setSel(null); }}>{t} · {n}</button>
+          ))}
+        </div>
+        <span className="bbmap-count"><b>{free}</b> из {list.length} свободно</span>
+      </div>
+
+      {calibrate && (
+        <div className="bbcal">
+          <strong>Режим разметки</strong>
+          <span>1) Выберите билборд в списке. 2) Кликните на карте, где он стоит. Список сам перейдёт к следующему. 3) Нажмите «Скопировать» и вставьте результат вместо <code>BB_POS</code>.</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <select className="field" style={{ width: 'auto', minWidth: 240 }} value={cur} onChange={(e) => setCur(e.target.value)}>
+              <option value="">— выберите билборд —</option>
+              {list.map((it) => <option key={it.id} value={it.n}>{pos[it.n] ? '✓ ' : ''}{it.title}</option>)}
+            </select>
+            <button type="button" className="tool-btn solid" onClick={exportPos}><Icon n="copy" />Скопировать координаты ({Object.keys(pos).length}/{list.length})</button>
+          </div>
+        </div>
+      )}
+
+      <div className="bbmap" onClick={onMapClick} style={calibrate && cur ? { cursor: 'crosshair' } : undefined}>
+        {mapSrc && !/ВАША_КАРТА/.test(mapSrc)
+          ? <img src={mapSrc} alt="Карта билбордов" draggable="false" />
+          : <div className="bbmap-empty">Вставьте ссылку на картинку карты в константу MAP_IMAGE</div>}
+        {placed.map((it) => {
+          const [x, y] = pos[it.n];
+          return (
+            <button key={it.id} type="button" className={'bbpin ' + status(it) + (sel === it.id ? ' on' : '')}
+              style={{ left: x + '%', top: y + '%' }} aria-label={it.title}
+              onClick={(e) => { e.stopPropagation(); setSel(it.id); }}><span>{it.n}</span></button>
+          );
+        })}
+      </div>
+
+      {active ? (
+        <div className="bbinfo" key={active.id}>
+          {active.image && <div className="photo"><img src={active.image} alt={active.title} /></div>}
+          <div>
+            {active.tag && <span className={'pill ' + (status(active) === 'free' ? 'pill-free' : status(active) === 'busy' ? 'pill-busy' : '')}>{active.tag}</span>}
+            <h3>{active.title}</h3>
+            <p>{active.text}</p>
+          </div>
+        </div>
+      ) : (
+        <div className="bbinfo hint">Выберите точку на карте, чтобы увидеть подробности</div>
+      )}
     </>
   );
 }
@@ -1632,7 +1771,7 @@ function AdminPanel({ cfg, page, set, go, act, saved, notify }) {
 
 /* ---------- Приложение ---------- */
 function App() {
-  const [cfg, setCfg] = useState(loadConfig);
+ const [cfg, setCfg] = useState(() => withMap(loadConfig()));
   const [pageId, setPageId] = useState('home');
   const [saved, setSaved] = useState(null);
   const [toast, setToast] = useState(null);
