@@ -344,6 +344,21 @@
 
 /* Подвал */
 footer .rule{border-top:3px solid var(--primary)}
+/* ================= TEAM ================= */
+.team-card{align-items:center;text-align:center;padding:24px 24px 22px;position:relative;overflow:hidden;gap:10px}
+.team-card::before{content:"";position:absolute;inset:0 0 auto 0;height:84px;background:linear-gradient(135deg,var(--primary),color-mix(in srgb,var(--primary) 55%,#000))}
+.team-ava{position:relative;width:112px;height:112px;z-index:1;margin-bottom:6px}
+.team-ring{position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(var(--primary),transparent 45%,var(--primary));opacity:0;transition:opacity .3s}
+.team-card:hover .team-ring{opacity:1;animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.team-photo{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:4px solid var(--surface);background:var(--primary-soft);display:grid;place-items:center;font-size:2.1rem;font-weight:700;color:var(--primary-text);font-family:var(--font-head);z-index:1;box-shadow:0 6px 18px rgb(0 0 0/.18)}
+.team-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.team-card:hover .team-photo img{transform:scale(1.08)}
+.team-card h3{font-size:1.25rem}
+.team-card p{max-width:34ch}
+.team-contact{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:6px;padding-top:14px;border-top:1px dashed var(--line)}
+.team-contact a{font-family:var(--font-mono);font-weight:500;color:var(--primary-text);text-decoration:none}
+.team-contact a:hover{text-decoration:underline}
 </style> 
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -687,6 +702,28 @@ const contactInfo = Object.assign(newBlock('text'), {
     mk({ q: '1111', a: '11111' }),
     mk({ q: '1111', a: '1111' }),
     mk({ q: '11111', a: '1111' }) ] });
+    const team = Object.assign(newBlock('cards'), {
+    team: true,
+    title: 'Наша команда',
+    lead: 'Люди, которые делают Weazel News каждый день',
+    cols: 2,
+    items: [
+      mk({
+        title: 'Molly Mercantile',
+        tag: 'Главный редактор',
+        text: 'Отвечает за выпуск новостей и рекламные заказы. Пишите ей по любым вопросам сотрудничества.',
+        phone: '370-1077',
+        image: null            // сюда ссылку на фото: 'https://imgur.com/xxxx.jpg'
+      }),
+      mk({
+        title: 'Ify Jelani',
+        tag: 'Репортёр и фотограф',
+        text: 'Ведёт съёмки, репортажи и интервью. Принимает заказы на фотосессии и видео.',
+        phone: '872-8988',
+        image: null
+      })
+    ]
+  });
 
   return {
     v: 2, theme: 'light', primary: '#8E0A10', font: 'modern', radius: 14,
@@ -695,7 +732,7 @@ const contactInfo = Object.assign(newBlock('text'), {
      { id: 'home', title: 'Главная', nav: true, accent: null, blocks: [hero, news, newsed, cards, stats, cta] },
       // --- ВАЖНО: добавлен 'billboards' ---
       { id: 'about', title: 'Билборды', nav: true, accent: null, blocks: [split, billboards, how] },
-      { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, faq] },
+      { id: 'contact', title: 'Контакты', nav: true, accent: null, blocks: [hello, team, faq] },
       { id: 'price and work', title: 'Цены и Услуги', nav: true, accent: null, blocks: [fr, prices] },
     ],
   };
@@ -1233,7 +1270,7 @@ function Cta({ b, patch }) {
 function Divider({ b }) {
   return <div className={'divider ' + b.size} role="separator">{b.line && <hr />}</div>;
 }
-const VIEWS = { hero: Hero, text: TextBlock, cards: Cards, image: ImageBlock, split: Split, gallery: Gallery, stats: Stats, faq: Faq, cta: Cta, divider: Divider };
+const VIEWS = { hero: Hero, text: TextBlock, cards: (p) => (p.b.team ? <Team {...p} /> : <Cards {...p} />), image: ImageBlock, split: Split, gallery: Gallery, stats: Stats, faq: Faq, cta: Cta, divider: Divider };
 
 function BlockView({ b, i, count, page, act }) {
   const { admin } = useCtx();
@@ -1313,6 +1350,41 @@ function BackToTop() {
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><Icon n="up" size={20} /></button>
   );
 }
+  function Team({ b, patch }) {
+  const { notify } = useCtx();
+  const initials = (n) => (n || '').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+  const copy = async (t) => {
+    try { await navigator.clipboard.writeText(t); notify('Номер ' + t + ' скопирован'); }
+    catch (e) { notify('Номер: ' + t); }
+  };
+  return (
+    <>
+      <Head b={b} patch={patch} />
+      <div className={'grid-n c' + b.cols}>
+        {b.items.map((p) => (
+          <article className="card team-card" key={p.id}>
+            <div className="team-ava">
+              <div className="team-ring" />
+              <div className="team-photo">
+                {p.image ? <img src={p.image} alt={p.title} /> : <span>{initials(p.title)}</span>}
+              </div>
+            </div>
+            <h3>{p.title}</h3>
+            {p.tag && <span className="pill">{p.tag}</span>}
+            {p.text && <p>{p.text}</p>}
+            {p.phone && (
+              <div className="team-contact">
+                <a href={'tel:' + p.phone.replace(/[^\d+]/g, '')}>☎ {p.phone}</a>
+                <button type="button" className="icon-btn" aria-label="Скопировать номер" title="Скопировать номер" onClick={() => copy(p.phone)}><Icon n="copy" size={14} /></button>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </>
+  );
+}
+
 
 /* ---------- Шапка, подвал ---------- */
 function SiteHeader({ cfg, page, set }) {
