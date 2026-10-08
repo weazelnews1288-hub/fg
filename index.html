@@ -283,7 +283,68 @@
   .editable:hover { outline-color: color-mix(in srgb, var(--primary) 55%, transparent); }
   .editable:focus { outline: 2px solid var(--primary); outline-offset: 4px; background: var(--primary-soft); }
   .editable:empty::before { content: attr(data-placeholder); color: var(--muted); opacity: .7; }
-</style>
+  /* ================= NEWS UI ================= */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--primary);z-index:100;transition:width .1s linear}
+
+/* Бегущая строка */
+.ticker{display:flex;background:#111114;color:#fff;font-size:.8125rem;overflow:hidden}
+.ticker-label{flex:none;display:flex;align-items:center;gap:8px;padding:9px 16px;background:var(--primary);color:var(--on-primary);font-family:var(--font-mono);font-size:.6875rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;position:relative;z-index:1;box-shadow:6px 0 12px rgb(0 0 0/.35)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 1.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgb(255 255 255/.75)}70%{box-shadow:0 0 0 8px rgb(255 255 255/0)}100%{box-shadow:0 0 0 0 rgb(255 255 255/0)}}
+.ticker-viewport{overflow:hidden;flex:1;min-width:0}
+.ticker-track{display:flex;width:max-content;animation:marq 45s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-item{display:inline-flex;align-items:center;gap:28px;padding:9px 0 9px 28px;white-space:nowrap}
+.ticker-item::after{content:"◆";font-size:.55rem;opacity:.45}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* Дата и шапка */
+.dateline{border-bottom:1px solid var(--line);font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:7px 0}
+.dateline-in{display:flex;justify-content:space-between;gap:12px}
+.dateline b{color:var(--primary-text);font-weight:500}
+.site-head{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.brand-badge{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:calc(var(--radius)*.4);background:var(--primary);color:var(--on-primary);font-weight:800;font-size:1rem;flex:none}
+.site-head .brand{font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+
+/* Заголовки секций с красной чертой */
+.head .h2::before{content:"";display:block;width:44px;height:4px;background:var(--primary);margin-bottom:12px;border-radius:2px}
+.align-center .head .h2::before{margin-inline:auto}
+.bg-accent .head .h2::before{background:var(--on-primary)}
+
+/* Главный экран: пульсирующая точка */
+.hero-blk .eyebrow{display:inline-flex;align-items:center;gap:10px}
+.hero-blk .eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--primary);animation:pulseRed 1.6s infinite}
+@keyframes pulseRed{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--primary) 60%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero-blk .photo{box-shadow:0 18px 40px rgb(0 0 0/.18)}
+
+/* Карточки */
+.card{overflow:hidden;transition:border-color .2s,transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgb(0 0 0/.12)}
+.card .photo img{transition:transform .6s ease}
+.card:hover .photo img{transform:scale(1.07)}
+.card h3{transition:color .2s}
+.card:hover h3{color:var(--primary-text)}
+
+/* Главная новость: крупная карточка слева, две справа */
+@media(min-width:960px){
+  .grid-n.c3 .card-feature{grid-column:span 2;grid-row:span 2}
+  .card-feature h3{font-size:1.75rem;line-height:1.2}
+  .card-feature .photo{aspect-ratio:auto!important;flex:1;min-height:300px}
+  .card-feature p{font-size:1.0625rem}
+}
+.card-feature .pill{background:var(--primary);color:var(--on-primary)}
+
+/* Появление при прокрутке */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* Кнопка «наверх» */
+.totop{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;background:var(--primary);color:var(--on-primary);display:grid;place-items:center;box-shadow:0 8px 22px rgb(0 0 0/.3);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+
+/* Подвал */
+footer .rule{border-top:3px solid var(--primary)}
+</style> 
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
@@ -1028,7 +1089,7 @@ function Cards({ b, patch }) {
       <Head b={b} patch={patch} />
       <div className={'grid-n c' + b.cols}>
         {b.items.map((c, i) => (
-          <article className={'card' + (c.priceList ? ' price-card' : '')} key={c.id}>
+          <article className={'card' + (c.priceList ? ' price-card' : '') + (i === 0 && (b.featured || b.title === 'Последние новости') ? ' card-feature' : '')} key={c.id}>
             {c.image
               ? <Photo src={c.image} ratio="16/10" onChange={(v) => L.update(c.id, { image: v })} />
               : admin && <PickButton className="mini self-start" onPick={(u) => L.update(c.id, { image: u })}><Icon n="image" size={14} />Добавить фото</PickButton>}
@@ -1205,24 +1266,87 @@ function PageView({ page, act }) {
     </>
   );
 }
+/* ---------- Новостные элементы ---------- */
+function Ticker({ cfg }) {
+  const home = cfg.pages.find((p) => p.id === 'home') || cfg.pages[0];
+  const src = home.blocks.find((b) => b.type === 'cards' && b.items.length);
+  const titles = (src ? src.items : []).map((i) => i.title).filter(Boolean);
+  const list = titles.length ? titles : [cfg.brand + ' — главные новости дня'];
+  const half = [...list, ...list, ...list];
+  return (
+    <div className="ticker" aria-label="Срочные новости">
+      <div className="ticker-label"><span className="live-dot" />Срочно</div>
+      <div className="ticker-viewport">
+        <div className="ticker-track">
+          {[0, 1].map((k) => half.map((t, i) => <span className="ticker-item" key={k + '-' + i}>{t}</span>))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReadProgress() {
+  const [w, setW] = useState(0);
+  useEffect(() => {
+    const f = () => {
+      const h = document.documentElement, m = h.scrollHeight - h.clientHeight;
+      setW(m > 0 ? (h.scrollTop / m) * 100 : 0);
+    };
+    f();
+    window.addEventListener('scroll', f, { passive: true });
+    window.addEventListener('resize', f);
+    return () => { window.removeEventListener('scroll', f); window.removeEventListener('resize', f); };
+  }, []);
+  return <div className="progress" style={{ width: w + '%' }} />;
+}
+
+function BackToTop() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const f = () => setShow(window.scrollY > 600);
+    f();
+    window.addEventListener('scroll', f, { passive: true });
+    return () => window.removeEventListener('scroll', f);
+  }, []);
+  return (
+    <button type="button" className={'totop' + (show ? ' show' : '')} aria-label="Наверх"
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><Icon n="up" size={20} /></button>
+  );
+}
 
 /* ---------- Шапка, подвал ---------- */
 function SiteHeader({ cfg, page, set }) {
   const { go } = useCtx();
+  const [now, setNow] = useState(new Date());
+  useEffect(() => { const t = setInterval(() => setNow(new Date()), 30000); return () => clearInterval(t); }, []);
+  const date = now.toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  const time = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
   return (
-    <header className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-6 sm:px-6">
-      <div className="brand min-w-0">
-        {cfg.logo ? <img className="logo" src={cfg.logo} alt="" /> : <span className="mark" aria-hidden="true" />}
-        <Editable value={cfg.brand} placeholder="Название сайта" onChange={(v) => set({ brand: v })} />
+    <>
+      <div className="dateline">
+        <div className="dateline-in mx-auto w-full max-w-5xl px-4 sm:px-6">
+          <span>{date}</span>
+          <span className="hidden sm:inline">Los Santos · <b>Эфир 24/7</b></span>
+          <span>{time}</span>
+        </div>
       </div>
-      <nav className="flex flex-wrap gap-x-5 gap-y-1" aria-label="Страницы">
-        {cfg.pages.filter((p) => p.nav).map((p) => (
-          <button key={p.id} type="button" className="navlink" aria-current={p.id === page.id ? 'page' : undefined} onClick={() => go(p.id)}>{p.title || 'Без названия'}</button>
-        ))}
-      </nav>
-    </header>
+      <div className="site-head">
+        <header className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4 sm:px-6">
+          <div className="brand min-w-0">
+            {cfg.logo ? <img className="logo" src={cfg.logo} alt="" /> : <span className="brand-badge" aria-hidden="true">W</span>}
+            <Editable value={cfg.brand} placeholder="Название сайта" onChange={(v) => set({ brand: v })} />
+          </div>
+          <nav className="flex flex-wrap gap-x-5 gap-y-1" aria-label="Страницы">
+            {cfg.pages.filter((p) => p.nav).map((p) => (
+              <button key={p.id} type="button" className="navlink" aria-current={p.id === page.id ? 'page' : undefined} onClick={() => go(p.id)}>{p.title || 'Без названия'}</button>
+            ))}
+          </nav>
+        </header>
+      </div>
+    </>
   );
 }
+
 function SiteFooter({ cfg, set }) {
   const { admin } = useCtx();
   if (!admin && !cfg.contact && !cfg.footer) return null;
@@ -1517,14 +1641,36 @@ function App() {
       catch (e) { notify('Не удалось прочитать настройки. Вставьте текст целиком, как он был скопирован.'); return false; }
     },
   };
+useLayoutEffect(() => {
+  if (!('IntersectionObserver' in window)) return;
+  const els = [...document.querySelectorAll('main .blk, main .card, main .stat')];
+  els.forEach((el) => {
+    el.classList.add('rv');
+    const idx = el.parentNode ? [...el.parentNode.children].indexOf(el) : 0;
+    el.style.transitionDelay = (idx % 4) * 90 + 'ms';
+  });
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      el.classList.add('in');
+      io.unobserve(el);
+      setTimeout(() => { el.classList.remove('rv', 'in'); el.style.transitionDelay = ''; }, 1000);
+    });
+  }, { threshold: 0.08 });
+  els.forEach((el) => io.observe(el));
+  return () => io.disconnect();
+}, [page.id]);
 
   const ctx = { admin, pages: cfg.pages, go, upload, notify };
   const scopeStyle = page.accent ? { '--primary': page.accent, '--on-primary': window.siteTheme.on(page.accent) } : undefined;
 
-  return (
+    return (
     <Ctx.Provider value={ctx}>
+      <ReadProgress />
       <div className="flex min-h-screen flex-col">
         <div className="scope flex flex-1 flex-col" style={scopeStyle}>
+          <Ticker cfg={cfg} />
           <SiteHeader cfg={cfg} page={page} set={set} />
           <main className="mx-auto w-full max-w-5xl min-w-0 flex-1 px-4 sm:px-6">
             <PageView key={page.id} page={page} act={act} />
@@ -1532,10 +1678,12 @@ function App() {
           <SiteFooter cfg={cfg} set={set} />
         </div>
         {toast && <div className="toast" role="status">{toast.msg}</div>}
+        <BackToTop />
       </div>
     </Ctx.Provider>
   );
 }
+
 
 (async () => {
   const j = (u) => fetch(u, { cache: 'no-store' }).then((r) => r.json()).catch(() => null);
