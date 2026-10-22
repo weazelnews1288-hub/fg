@@ -136,22 +136,23 @@ nav a:hover,nav a.on{color:#fff}nav a.on{border-bottom-color:var(--red)}
 .map{position:relative;border:0;border-radius:0;background:transparent;user-select:none;scroll-margin-top:5rem}
 .map>img{width:100%;height:auto;border-radius:0}.mapempty{aspect-ratio:16/9;display:grid;place-items:center;color:var(--muted);text-align:center;padding:1rem}
 .pins{position:absolute;inset:0;pointer-events:none;z-index:2}
-/* ЛЕНТА НА КАРТЕ: две красные ленты крест-накрест поверх карты, точки лежат выше ленты и остаются кликабельными.
-   Угол — rotate() у .tape.a / .tape.b; положение — top; толщина — height; скорость бегущего текста — секунды в animation у .tape i;
-   цвет ленты — градиент в background (красный сайта #d0141c). Текст ленты — CFG.tapeText. Убрать ленту совсем: tapeText: '' */
-.map>img{filter:brightness(.82) saturate(.9)}
+/* ЛЕНТА НА КАРТЕ: жёлтые «полицейские» ленты, как на месте преступления — неподвижные, с тенью, пять штук вразнобой поверх карты.
+   Угол — rotate() у .tape.a … .tape.e; положение — top; толщина — height; тень — box-shadow; цвет — градиент в background.
+   Текст ленты — CFG.tapeText. Убрать ленты совсем: tapeText: '' */
+.map>img{filter:brightness(.8) saturate(.85)}
 .tapes{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.tape{position:absolute;left:-20%;width:140%;height:clamp(1.8rem,3.4vw,2.9rem);display:flex;align-items:center;overflow:hidden;
- background:repeating-linear-gradient(-45deg,transparent 0 .8rem,rgba(0,0,0,.16) .8rem 1.6rem),linear-gradient(180deg,#f0343b 0,#d0141c 48%,#9c0d13 100%);
- border-top:1px solid #ff6a70;border-bottom:1px solid #6e0910;color:#fff;
- box-shadow:0 .55rem 1.3rem #000c,0 0 2rem #d0141c55,inset 0 1px 0 #ffffff40;opacity:.96}
-.tape::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#ffffff2e 0,#fff0 45%,#0000004d 100%);pointer-events:none}
-.tape.a{top:30%;transform:translateY(-50%) rotate(-12deg)}
-.tape.b{top:68%;transform:translateY(-50%) rotate(8deg);filter:brightness(.92)}
-.tape i{display:flex;width:max-content;font-style:normal;font-weight:800;font-size:clamp(.62rem,1.15vw,.9rem);letter-spacing:.18em;text-transform:uppercase;text-shadow:0 1px 2px #000a;animation:mq 46s linear infinite}
-.tape.b i{animation-direction:reverse;animation-duration:58s}
-.tape i span{white-space:nowrap;padding-right:1.4rem}
-.tape i span::after{content:"\25C6";padding-left:1.4rem;color:#1a0406;text-shadow:none}
+.tape{position:absolute;left:-30%;width:160%;height:clamp(1.7rem,3.2vw,2.7rem);display:flex;align-items:center;overflow:hidden;
+ background:linear-gradient(180deg,#ffe033 0,#f7c600 52%,#d9a700 100%);
+ border-top:1px solid #fff2a0;border-bottom:1px solid #8a6800;color:#111;
+ box-shadow:0 .55rem 1rem #000d,0 .2rem .35rem #000b,0 0 0 1px #0004}
+.tape::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#ffffff38 0,#fff0 40%,#0000002e 100%);pointer-events:none}
+.tape.a{top:12%;transform:translateY(-50%) rotate(-17deg)}
+.tape.b{top:34%;transform:translateY(-50%) rotate(12deg)}
+.tape.c{top:55%;transform:translateY(-50%) rotate(-8deg)}
+.tape.d{top:78%;transform:translateY(-50%) rotate(15deg)}
+.tape.e{top:92%;transform:translateY(-50%) rotate(-12deg)}
+.tape i{display:flex;width:max-content;font-style:normal;font-weight:800;font-size:clamp(.6rem,1.1vw,.88rem);letter-spacing:.16em;text-transform:uppercase}
+.tape i span{white-space:nowrap;padding-right:2.4rem}
 /* РАЗМЕР ТОЧЕК: width/height — диаметр, font-size — цифра внутри, border — рамка */
 .pin{position:absolute;pointer-events:auto;transform:translate(-50%,-50%);width:max(.95rem,13px);height:max(.95rem,13px);border-radius:50%;border:1px solid #fff;color:#fff;font-size:.5rem;line-height:1;font-weight:700;display:grid;place-items:center;padding:0;box-shadow:0 2px 6px #000a;transition:transform .15s,box-shadow .15s}
 .pin.free{background:#2f9e4a}.pin.busy{background:#c0392b}.pin.on{transform:translate(-50%,-50%) scale(1.5);z-index:3;box-shadow:0 0 0 3px #fff6}
@@ -264,7 +265,8 @@ const CFG = {
 
   heroImg: IMG('i2kWNP9'),     // картинка на главной
   mapImg: IMG('PF1WkWe'),      // карта города для билбордов
-  tapeText: 'Weazel News · Правда движет Лос-Сантосом · Линия прессы · Не пересекать',   // текст на ленте поверх карты (пусто '' — ленты не будет)
+  tapeText: 'Место преступления · Не переходить',   // текст на жёлтых лентах поверх карты (пусто '' — лент не будет)
+  pinsOn: false,   // точки на карте: false — временно скрыты и отключены, true — снова включить
 
   /* >>> СЮДА ВСТАВЬТЕ ССЫЛКУ ДЛЯ ТАБЛИЦЫ <<<
      Это ссылка веб-приложения Apps Script (заканчивается на /exec), а не обычная ссылка на таблицу.
@@ -322,10 +324,10 @@ const tel = p => 'tel:' + p.replace(/[^\d+]/g, '');
 const plural = (n,a,b,c) => { const m=n%100, d=n%10; return m>10&&m<20 ? c : d===1 ? a : d>1&&d<5 ? b : c };
 const fmtDate = d => { const m = String(d||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); return m ? `${m[3]}.${m[2]}.${m[1]}` : '' };
 
-// Лента поверх карты билбордов
+// Жёлтые ленты поверх карты билбордов (5 штук, неподвижные)
 const tapeHTML = () => { const t = (CFG.tapeText||'').trim(); if(!t) return '';
-  const row = Array.from({length:16}, () => `<span>${t}</span>`).join('');
-  return `<div class="tapes" aria-hidden="true"><div class="tape a"><i>${row}</i></div><div class="tape b"><i>${row}</i></div></div>`; };
+  const row = Array.from({length:14}, () => `<span>${t}</span>`).join('');
+  return `<div class="tapes" aria-hidden="true">${['a','b','c','d','e'].map((k,i)=>`<div class="tape ${k}"><i style="margin-left:-${i*9}rem">${row}</i></div>`).join('')}</div>`; };
 
 const newsCard = (n, i) => `<article class="card"><div class="im">${img(n.img,n.title)}</div><div class="tag">${n.tag}${i===0?'<span class="new">Новое</span>':''}</div><h3>${n.title}</h3>${n.date?`<div class="dt">${fmtDate(n.date)}</div>`:''}<p>${n.text}</p></article>`;
 // Шапка внутренней страницы: pghead(заголовок, текст, кнопки, блок справа)
@@ -452,7 +454,7 @@ function initSlider(){
    ?calibrate — режим разметки точек */
 function initBillboards(){
   const box = $('#bbapp'); if(!box) return;
-  const cal = /[?&]calibrate/.test(location.search), narrow = () => matchMedia('(max-width:960px)').matches;
+  const cal = /[?&]calibrate/.test(location.search), showPins = cal || !!CFG.pinsOn, narrow = () => matchMedia('(max-width:960px)').matches;
   let filter='all', q='', sel=null, hov=null, hideT=0, cur='', pos={...BB_POS};
   box.innerHTML = `
     <div class="tools"><div class="seg" role="group" aria-label="Статус">${[['all','Все',BB.length],['free','Свободные',FREE],['busy','Занятые',BB.length-FREE]].map(([k,t,n])=>`<button data-f="${k}" aria-pressed="${k==='all'}">${t}<span>${n}</span></button>`).join('')}</div>
@@ -460,7 +462,7 @@ function initBillboards(){
     <div class="bbgrid"><div class="bblist" id="bbl"></div>
       <aside class="bbside">${cal?'<div class="cal" id="cal"></div>':''}
         <div class="map" id="map">${CFG.mapImg?img(CFG.mapImg,'Карта билбордов'):'<div class="mapempty">Укажите ссылку на карту в CFG.mapImg</div>'}${cal?'':tapeHTML()}<div class="pins" id="pins"></div><div class="tip" id="tip" role="tooltip"></div></div>
-        <p class="cap hintcap">Наведите на точку на карте или выберите билборд в списке — рядом появится информация.</p></aside></div>`;
+        <p class="cap hintcap">${showPins?'Наведите на точку на карте или выберите билборд в списке — рядом появится информация.':'Точки на карте временно отключены. Выберите билборд в списке.'}</p></aside></div>`;
   const list = () => BB.filter(b => (filter==='all' || (filter==='free')===b.free) && `${b.n} ${b.s} ${b.c}`.toLowerCase().includes(q));
 
   /* Подсветка строки и точки */
@@ -484,15 +486,15 @@ function initBillboards(){
     }
     t.style.left = Math.round(left)+'px'; t.style.top = Math.round(top)+'px';
   };
-  const refresh = () => { const n = hov ?? sel; if(n!=null) place(n); else $('#tip')?.classList.remove('show'); mark() };
+  const refresh = () => { const n = hov ?? sel; if(showPins && n!=null) place(n); else $('#tip')?.classList.remove('show'); mark() };
   const scheduleHide = () => { clearTimeout(hideT); hideT = setTimeout(()=>{ hov=null; refresh() }, 180) };
 
-  const drawPins = () => { $('#pins').innerHTML = list().filter(b=>pos[b.n]).map(b=>`<button class="pin ${b.free?'free':'busy'}" style="left:${pos[b.n][0]}%;top:${pos[b.n][1]}%" data-n="${b.n}" aria-label="${b.title}">${b.n}</button>`).join('') };
+  const drawPins = () => { if(!showPins){ $('#pins').innerHTML=''; return } $('#pins').innerHTML = list().filter(b=>pos[b.n]).map(b=>`<button class="pin ${b.free?'free':'busy'}" style="left:${pos[b.n][0]}%;top:${pos[b.n][1]}%" data-n="${b.n}" aria-label="${b.title}">${b.n}</button>`).join('') };
   const drawList = () => { const l = list(); if(sel && !l.some(b=>b.n===sel)) sel=null; hov=null;
     $('#bbl').innerHTML = l.length ? l.map(b=>`<button class="bbrow" data-n="${b.n}"><span class="bbn">${b.n}</span><span><b>${b.s}</b><small>Код ${b.c}</small></span><span class="st ${b.free?'':'busy'}">${b.free?'Свободен':'Занят'}</span></button>`).join('') : '<div class="empty">Ничего не найдено. Измените фильтр или запрос.</div>';
     drawPins(); refresh() };
   const select = (n, src) => { sel = (sel===n && src==='pin') ? null : n; hov=null; refresh();
-    if(src==='row' && narrow()) $('#map').scrollIntoView({behavior:'smooth',block:'start'});
+    if(src==='row' && narrow() && showPins) $('#map').scrollIntoView({behavior:'smooth',block:'start'});
     if(src==='pin' && !narrow()) box.querySelector(`.bbrow[data-n="${n}"]`)?.scrollIntoView({block:'nearest',behavior:'smooth'}) };
 
   box.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;box.querySelectorAll('[data-f]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));drawList()});
